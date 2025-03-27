@@ -1,0 +1,30 @@
+[Unit]
+Description= LightHouse
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ lighthouse_home_dir }}
+ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
+  --datadir {{ lighthouse_data_dir }} \
+  --logfile {{ lighthouse_log_file_path }} \
+  --network mainnet \
+  --staking \
+  --validator-monitor-auto \
+  --metrics \
+  --checkpoint-sync-url=https://beaconstate.info \
+  --port {{ ethereum.lighthouse.ports.p2p }} \
+  --quic-port {{ ethereum.lighthouse.ports.quic }} \
+  --http-port {{ ethereum.lighthouse.ports.http }} \
+  --target-peers 100 \
+  --metrics-port {{ ethereum.lighthouse.ports.metrics }} \
+  --execution-endpoint http://127.0.0.1:{{ ethereum.nethermind.ports.engine }} \
+  --execution-jwt {{ lighthouse_jwt_secret_path }}
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+
+[Install]
+WantedBy=multi-user.target

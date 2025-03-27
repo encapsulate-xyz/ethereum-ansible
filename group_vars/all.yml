@@ -33,3 +33,10 @@ ethereum:
       network_discovery: 30303
       http: 8545
       metrics: 6060
+  lighthouse:
+    source_url: https://github.com/sigp/lighthouse/releases/download
+    ports:
+      p2p: 9000
+      quic: 9001
+      http: 5052
+      metrics: 8008

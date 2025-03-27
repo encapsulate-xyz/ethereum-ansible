@@ -40,3 +40,11 @@ ethereum:
       quic: 9001
       http: 5052
       metrics: 8008
+  prysm:
+    source_url: https://github.com/prysmaticlabs/prysm/releases/download
+    ports:
+      grpc: 5052
+      p2p_tcp: 13000
+      p2p_udp: 12000
+      metrics: 8008
+      quic: 13000

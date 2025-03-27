@@ -8,4 +8,4 @@ ethereum:
   lighthouse:
     version: v6.0.1
   prysm:
-    version: v5.3.1
+    version: v5.3.2

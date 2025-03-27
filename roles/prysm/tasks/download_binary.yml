@@ -1,0 +1,12 @@
+---
+- name: Download binary
+  vars:
+    suffix_url: "{{ prysm_default_binary_name }}-{{ ethereum.prysm.version }}-{{ ansible_system | lower }}-{{ system_architecture }}"
+  get_url:
+    url: "{{ ethereum.prysm.source_url }}/{{ ethereum.prysm.version }}/{{ suffix_url }}"
+    dest: "{{ prysm_bin_dir }}/{{ service_identifier }}"
+    owner: root
+    group: root
+    mode: "0755"
+  notify:
+    - Restart service  

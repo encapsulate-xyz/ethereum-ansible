@@ -1,0 +1,18 @@
+---
+prysm_home_dir: /opt/{{ service_identifier }}
+
+prysm_bin_dir: "{{ prysm_home_dir }}/bin"
+prysm_data_dir: "{{ prysm_home_dir }}/data"
+prysm_jwt_secret_dir: "{{ prysm_home_dir }}/jwtsecret"
+prysm_log_dir: "{{ prysm_home_dir }}/log"
+
+prysm_directories:
+  - "{{ prysm_home_dir }}"
+  - "{{ prysm_bin_dir }}"
+  - "{{ prysm_data_dir }}"
+  - "{{ prysm_jwt_secret_dir }}"
+  - "{{ prysm_log_dir }}"
+
+prysm_log_file_path: "{{ prysm_log_dir }}/{{ service_identifier }}.log"
+
+prysm_jwt_secret_path: "{{ prysm_jwt_secret_dir }}/{{ prysm_jwt_secret_file_name }}"

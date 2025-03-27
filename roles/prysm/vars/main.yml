@@ -1,0 +1,4 @@
+---
+prysm_jwt_secret_file_name: jwt.hex
+
+prysm_default_binary_name: beacon-chain

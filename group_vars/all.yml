@@ -16,25 +16,12 @@ default_node_types:
 
 tmp_dir: /tmp
 
-go:
-  root: /usr/local/go
-  path: "{{ tmp_dir }}/go"
-  module111: "on"
-
-sui:
-  validator:
-    source_url: https://releases.sui.io
+ethereum:
+  nethermind:
+    source_url: https://nethdev.blob.core.windows.net/builds
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  fullnode:
-    version: 88888888888
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  bridge:
-    source_url: https://releases.sui.io
-    ports:
-      server_listen_port: 9191
-      metrics_port: 9186
+      engine: 8551
+      network_discovery: 30303
+      p2p: 30303
+      json_rpc: 8545
+      metrics: 6060

@@ -1,0 +1,22 @@
+[Unit]
+Description= Nethermind
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ nethermind_home_dir }}
+ExecStart={{ nethermind_bin_dir }}/{{ service_identifier }} \
+    --pluginsDirectory {{ nethermind_plugins_dir }} \
+    --config {{ nethermind_config_file_path }} \
+    --datadir {{ nethermind_data_dir }} \
+    --loggerConfigSource {{ nethermind_nlog_file_path }}
+Restart=always
+RestartSec=4
+LimitNOFILE=1000000
+KillSignal=SIGINT
+TimeoutStopSec=900s
+MemoryMax=64G
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,27 @@
+---
+nethermind_home_dir: /opt/{{ service_identifier }}
+
+nethermind_bin_dir: "{{ nethermind_home_dir }}/bin"
+nethermind_config_dir: "{{ nethermind_home_dir }}/config"
+nethermind_data_dir: "{{ nethermind_home_dir }}/data"
+nethermind_jwt_secret_dir: "{{ nethermind_home_dir }}/jwtsecret"
+nethermind_keystore_dir: "{{ nethermind_home_dir }}/keystore"
+nethermind_plugins_dir: "{{ nethermind_home_dir }}/plugins"
+nethermind_log_dir: "{{ nethermind_home_dir }}/log"
+
+nethermind_directories:
+  - "{{ nethermind_home_dir }}"
+  - "{{ nethermind_bin_dir }}"
+  - "{{ nethermind_config_dir }}"
+  - "{{ nethermind_data_dir }}"
+  - "{{ nethermind_jwt_secret_dir }}"
+  - "{{ nethermind_keystore_dir }}"
+  - "{{ nethermind_plugins_dir }}"
+  - "{{ nethermind_log_dir }}"
+
+nethermind_log_file_path: "{{ nethermind_log_dir }}/{{ service_identifier }}.log"
+
+nethermind_jwt_secret_path: "{{ nethermind_jwt_secret_dir }}/{{ nethermind_jwt_secret_file_name }}"
+
+nethermind_config_file_path: "{{ nethermind_config_dir }}/{{ nethermind_config_file_name }}"
+nethermind_nlog_file_path: "{{ nethermind_config_dir }}/{{ nethermind_nlog_file_name }}"

@@ -1,0 +1,22 @@
+---
+geth_home_dir: /opt/{{ service_identifier }}
+
+geth_bin_dir: "{{ geth_home_dir }}/bin"
+geth_data_dir: "{{ geth_home_dir }}/data"
+geth_jwt_secret_dir: "{{ geth_home_dir }}/jwtsecret"
+geth_env_dir: "{{ geth_home_dir }}/environment"
+geth_log_dir: "{{ geth_home_dir }}/log"
+
+geth_directories:
+  - "{{ geth_home_dir }}"
+  - "{{ geth_bin_dir }}"
+  - "{{ geth_data_dir }}"
+  - "{{ geth_jwt_secret_dir }}"
+  - "{{ geth_env_dir }}"
+  - "{{ geth_log_dir }}"
+
+geth_log_file_path: "{{ geth_log_dir }}/{{ service_identifier }}.log"
+
+geth_jwt_secret_path: "{{ geth_jwt_secret_dir }}/{{ geth_jwt_secret_file_name }}"
+
+geth_environment_general_file_path: "{{ geth_env_dir }}/{{ geth_environment_general_file_name }}"

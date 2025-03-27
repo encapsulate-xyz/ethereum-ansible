@@ -25,3 +25,11 @@ ethereum:
       p2p: 30303
       json_rpc: 8545
       metrics: 6060
+  geth:
+    source_url: https://gethstore.blob.core.windows.net/builds
+    ports:
+      auth_rpc: 8551
+      p2p: 30303
+      network_discovery: 30303
+      http: 8545
+      metrics: 6060

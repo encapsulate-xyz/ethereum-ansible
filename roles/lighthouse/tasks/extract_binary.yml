@@ -1,4 +1,8 @@
 ---
+- name: Set a temporary variable
+  ansible.builtin.set_fact:
+    lighthouse_path: "{{ lighthouse_default_binary_name }}-{{ ethereum.lighthouse.version }}-{{ ansible_architecture }}"
+
 - name: Create tmp directory
   ansible.builtin.file:
     path: "{{ tmp_dir }}/{{ service_identifier }}"
@@ -9,7 +13,7 @@
 
 - name: Unarchive the binary
   vars:
-    suffix_url: "{{ lighthouse_default_binary_name }}-{{ ethereum.lighthouse.version }}-{{ ansible_architecture }}-unknown-{{ ansible_system | lower }}-gnu.tar.gz"
+    suffix_url: "{{ lighthouse_path }}-unknown-{{ ansible_system | lower }}-gnu.tar.gz"
   ansible.builtin.unarchive:
     src: "{{ ethereum.lighthouse.source_url }}/{{ ethereum.lighthouse.version }}/{{ suffix_url }}"
     dest: "{{ tmp_dir }}/{{ service_identifier }}"

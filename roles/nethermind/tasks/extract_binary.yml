@@ -39,6 +39,8 @@
     group: root
     force: true
     mode: "0755"
+  notify:
+    - Restart service
 
 - name: Copy Nlog.config
   ansible.builtin.copy:
@@ -49,6 +51,8 @@
     group: "{{ service_identifier }}"
     force: true
     mode: "0644"
+  notify:
+    - Restart service
 
 - name: Clear tmp directory
   ansible.builtin.file:

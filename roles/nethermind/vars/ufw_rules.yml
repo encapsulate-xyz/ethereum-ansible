@@ -5,7 +5,7 @@ nethermind_ufw_rules:
     rule: allow
     from: any
     comment: nethermind_p2p_port
-  
+
   - port: "{{ ethereum.nethermind.ports.p2p }}"
     proto: udp
     rule: allow

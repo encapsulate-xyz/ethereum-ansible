@@ -5,7 +5,7 @@ prysm_ufw_rules:
     rule: allow
     from: any
     comment: prysm_p2p_tcp_port
-  
+
   - port: "{{ ethereum.prysm.ports.p2p_udp }}"
     proto: udp
     rule: allow

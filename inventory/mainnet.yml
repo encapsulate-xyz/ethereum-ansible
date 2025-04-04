@@ -6,29 +6,32 @@ all:
   children:
     ethereum:
       hosts:
+
         arid_consensus_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
-          type: lighthouse
-          cluster: arid
+          type: consensus
+          client: lighthouse
         arid_execution_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
-          type: nethermind
-          cluster: arid
+          type: consensus
+          client: nethermind
 
         manta_consensus_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
-          type: lighthouse
-          cluster: manta
+          type: consensus
+          client: lighthouse
         manta_execution_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
-          type: nethermind
-          cluster: manta
+          type: execution
+          client: nethermind
 
         zypher_consensus_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
-          type: prysm
-          cluster: zypher
+          type: consensus
+          client: prysm
+
         zypher_execution_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
-          type: geth
-          cluster: zypher
+          type: execution
+          client: geth
+

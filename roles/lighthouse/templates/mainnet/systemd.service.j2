@@ -8,7 +8,6 @@ Group={{ service_identifier }}
 WorkingDirectory={{ lighthouse_home_dir }}
 ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --datadir {{ lighthouse_data_dir }} \
-  --logfile {{ lighthouse_log_file_path }} \
   --network mainnet \
   --staking \
   --validator-monitor-auto \
@@ -25,6 +24,8 @@ Restart=always
 RestartSec=4
 LimitNOFILE=65536
 MemoryMax=64G
+StandardOutput=append:{{ lighthouse_log_file_path }}
+StandardError=inherit
 
 [Install]
 WantedBy=multi-user.target

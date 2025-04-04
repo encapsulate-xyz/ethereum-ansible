@@ -1,0 +1,60 @@
+---
+- name: Create tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Unarchive the binary
+  vars:
+    suffix_url: "{{ nethermind_default_binary_name }}-{{ ethereum.nethermind.version }}-{{ ansible_system | lower }}-x64.zip"
+  ansible.builtin.unarchive:
+    src: "{{ ethereum.nethermind.source_url }}/{{ suffix_url }}"
+    dest: "{{ tmp_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy binary file
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ nethermind_default_binary_name }}"
+    dest: "{{ nethermind_bin_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    force: true
+    mode: "0755"
+  notify:
+    - Restart service
+
+- name: Copy plugins
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/plugins"
+    dest: "{{ nethermind_home_dir }}"
+    remote_src: true
+    owner: root
+    group: root
+    force: true
+    mode: "0755"
+  notify:
+    - Restart service
+
+- name: Copy Nlog.config
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/NLog.config"
+    dest: "{{ nethermind_nlog_file_path }}"
+    remote_src: true
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    force: true
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Clear tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: absent

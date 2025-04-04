@@ -1,0 +1,25 @@
+---
+lighthouse_ufw_rules:
+  - port: "{{ ethereum.lighthouse.ports.p2p }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: lighthouse_p2p_port
+
+  - port: "{{ ethereum.lighthouse.ports.p2p }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: lighthouse_p2p_port
+
+  - port: "{{ ethereum.lighthouse.ports.quic }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: lighthouse_quic_port
+
+  - port: "{{ ethereum.lighthouse.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: lighthouse_metrics_port

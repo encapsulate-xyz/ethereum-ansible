@@ -1,0 +1,18 @@
+---
+lighthouse_home_dir: /opt/{{ service_identifier }}
+
+lighthouse_bin_dir: "{{ lighthouse_home_dir }}/bin"
+lighthouse_data_dir: "{{ lighthouse_home_dir }}/data"
+lighthouse_jwt_secret_dir: "{{ lighthouse_home_dir }}/jwtsecret"
+lighthouse_log_dir: "{{ lighthouse_home_dir }}/log"
+
+lighthouse_directories:
+  - "{{ lighthouse_home_dir }}"
+  - "{{ lighthouse_bin_dir }}"
+  - "{{ lighthouse_data_dir }}"
+  - "{{ lighthouse_jwt_secret_dir }}"
+  - "{{ lighthouse_log_dir }}"
+
+lighthouse_log_file_path: "{{ lighthouse_log_dir }}/{{ service_identifier }}.log"
+
+lighthouse_jwt_secret_path: "{{ lighthouse_jwt_secret_dir }}/{{ lighthouse_jwt_secret_file_name }}"

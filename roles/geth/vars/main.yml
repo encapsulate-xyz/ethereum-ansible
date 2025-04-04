@@ -1,0 +1,6 @@
+---
+geth_jwt_secret_file_name: jwt.hex
+
+geth_environment_general_file_name: "{{ service_identifier }}.env"
+
+geth_default_binary_name: geth

@@ -1,0 +1,19 @@
+---
+geth_ufw_rules:
+  - port: "{{ ethereum.geth.ports.p2p }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: geth_p2p_port
+
+  - port: "{{ ethereum.geth.ports.p2p }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: geth_p2p_port
+
+  - port: "{{ ethereum.geth.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: geth_metrics_port

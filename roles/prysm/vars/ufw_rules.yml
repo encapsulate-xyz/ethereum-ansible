@@ -1,0 +1,19 @@
+---
+prysm_ufw_rules:
+  - port: "{{ ethereum.prysm.ports.p2p_tcp }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: prysm_p2p_tcp_port
+
+  - port: "{{ ethereum.prysm.ports.p2p_udp }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: prysm_p2p_udp_port
+
+  - port: "{{ ethereum.prysm.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: prysm_metrics_port

@@ -1,0 +1,21 @@
+[Unit]
+Description= Geth
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ geth_home_dir }}
+EnvironmentFile={{ geth_environment_general_file_path }}
+ExecStart={{ geth_bin_dir }}/{{ service_identifier }}
+Restart=always
+RestartSec=4
+LimitNOFILE=1000000
+KillSignal=SIGINT
+TimeoutStopSec=900s
+MemoryMax=64G
+StandardOutput=append:{{ geth_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

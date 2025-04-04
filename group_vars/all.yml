@@ -16,25 +16,35 @@ default_node_types:
 
 tmp_dir: /tmp
 
-go:
-  root: /usr/local/go
-  path: "{{ tmp_dir }}/go"
-  module111: "on"
-
-sui:
-  validator:
-    source_url: https://releases.sui.io
+ethereum:
+  nethermind:
+    source_url: https://nethdev.blob.core.windows.net/builds
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  fullnode:
-    version: 88888888888
-    source_url: https://releases.sui.io
+      engine: 8551
+      network_discovery: 30303
+      p2p: 30303
+      json_rpc: 8545
+      metrics: 6060
+  geth:
+    source_url: https://gethstore.blob.core.windows.net/builds
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
-  bridge:
-    source_url: https://releases.sui.io
+      auth_rpc: 8551
+      p2p: 30303
+      network_discovery: 30303
+      http: 8545
+      metrics: 6060
+  lighthouse:
+    source_url: https://github.com/sigp/lighthouse/releases/download
     ports:
-      server_listen_port: 9191
-      metrics_port: 9186
+      p2p: 9000
+      quic: 9001
+      http: 5052
+      metrics: 8008
+  prysm:
+    source_url: https://github.com/prysmaticlabs/prysm/releases/download
+    ports:
+      grpc: 5052
+      p2p_tcp: 13000
+      p2p_udp: 12000
+      metrics: 8008
+      quic: 13000

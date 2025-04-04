@@ -1,0 +1,4 @@
+---
+lighthouse_jwt_secret_file_name: jwt.hex
+
+lighthouse_default_binary_name: lighthouse

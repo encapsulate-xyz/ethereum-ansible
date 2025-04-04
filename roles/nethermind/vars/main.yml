@@ -1,0 +1,7 @@
+---
+nethermind_jwt_secret_file_name: jwt.hex
+
+nethermind_config_file_name: config.json
+nethermind_nlog_file_name: NLog.config
+
+nethermind_default_binary_name: nethermind

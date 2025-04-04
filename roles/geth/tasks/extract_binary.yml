@@ -1,0 +1,32 @@
+---
+- name: Set a temporary variable
+  ansible.builtin.set_fact:
+    geth_path: "{{ geth_default_binary_name }}-{{ ansible_system | lower }}-{{ system_architecture }}-{{ ethereum.geth.version }}"
+
+- name: Unarchive the binary
+  vars:
+    suffix_url: "{{ geth_path }}.tar.gz"
+  ansible.builtin.unarchive:
+    src: "{{ ethereum.geth.source_url }}/{{ suffix_url }}"
+    dest: "{{ tmp_dir }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy binary file
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ geth_path }}/{{ geth_default_binary_name }}"
+    dest: "{{ geth_bin_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    force: true
+    mode: "0755"
+  notify:
+    - Restart service
+
+- name: Clear tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ geth_path }}/{{ geth_default_binary_name }}"
+    state: absent

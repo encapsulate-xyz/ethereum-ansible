@@ -4,11 +4,34 @@ all:
   vars:
     env: mainnet
   children:
-    sui:
+    ethereum:
       hosts:
-        bridge.sui.mainnet.encapsulate.xyz:
-          type: bridge
-        validator.sui.mainnet.encapsulate.xyz:
-          type: validator
-        fullnode.sui.mainnet.encapsulate.xyz:
-          type: fullnode
+
+        arid_consensus_client:
+          ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
+          type: consensus
+          client: lighthouse
+        arid_execution_client:
+          ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
+          type: consensus
+          client: nethermind
+
+        manta_consensus_client:
+          ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
+          type: consensus
+          client: lighthouse
+        manta_execution_client:
+          ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
+          type: execution
+          client: nethermind
+
+        zypher_consensus_client:
+          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+          type: consensus
+          client: prysm
+
+        zypher_execution_client:
+          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+          type: execution
+          client: geth
+

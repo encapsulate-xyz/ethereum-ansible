@@ -1,0 +1,46 @@
+{
+  "Init": {
+    "GenesisHash": "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3",
+    "LogDirectory": "{{ nethermind_log_dir }}",
+    "LogFileName": "{{ service_identifier }}.log"
+  },
+  "KeyStore": {
+    "KeyStoreDirectory": "{{ nethermind_keystore_dir }}"
+  },
+  "JsonRpc": {
+    "Enabled": true,
+    "EnabledModules": [ "Eth", "Net", "Web3", "Subscribe", "Client" ],
+    "JwtSecretFile": "{{ nethermind_jwt_secret_path }}",
+    "Host": "127.0.0.1",
+    "Port": "{{ ethereum.nethermind.ports.json_rpc }}",
+    "EnginePort": "{{ ethereum.nethermind.ports.engine }}",
+    "AdditionalRpcUrls": [
+      "http://localhost:{{ ethereum.nethermind.ports.engine }}|http;ws|net;eth;subscribe;engine;web3;client"
+    ]
+  },
+  "Network": {
+    "DiscoveryPort": "{{ ethereum.nethermind.ports.network_discovery }}",
+    "P2PPort": "{{ ethereum.nethermind.ports.p2p }}",
+    "MaxActivePeers": 50
+  },
+  "Metrics": {
+    "Enabled": true,
+    "ExposePort": "{{ ethereum.nethermind.ports.metrics }}"
+  },
+  "Pruning": {
+    "Mode": "Hybrid",
+    "FullPruningTrigger": "VolumeFreeSpace",
+    "FullPruningThresholdMb": 375810,
+    "FullPruningMemoryBudgetMb": 16384,
+    "FullPruningMaxDegreeOfParallelism": 2,
+    "FullPruningCompletionBehavior": "AlwaysShutdown"
+  },
+  "Sync": {
+    "FastSync": true,
+    "SnapSync": true,
+    "PivotNumber": 21704000,
+    "PivotHash": "0x1f7ded348870fc227832494490b87150859e90127a1d0f2b701a85f67e3d8a9a",
+    "PivotTotalDifficulty": "58750003716598352816469",
+    "FastSyncCatchUpHeightDelta": "10000000000"
+  }
+}

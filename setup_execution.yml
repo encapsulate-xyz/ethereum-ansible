@@ -1,10 +1,10 @@
 ---
-- name: Set up Light House Client
+- name: Set up Execution Client
   hosts: all
   become: true
   gather_facts: true
   vars:
-    allowed_node_types: [lighthouse]
+    allowed_node_types: [execution]
   vars_files:
     - group_vars/all.yml
     - group_vars/vault.yml
@@ -18,12 +18,19 @@
           ansible.builtin.include_tasks: tasks/setup_environment.yml
 
   tasks:
-    - name: Run lighthouse role
+    - name: Run execution client roles
       when: type in allowed_node_types
       block:
         - name: Include common handlers
           ansible.builtin.include_role:
             name: common
-        - name: Include lighthouse role
+
+        - name: Include nethermind role
           ansible.builtin.include_role:
-            name: lighthouse
+            name: nethermind
+          when: client == "nethermind"
+
+        - name: Include geth role
+          ansible.builtin.include_role:
+            name: geth
+          when: client == "geth"

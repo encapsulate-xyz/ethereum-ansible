@@ -1,10 +1,10 @@
 ---
-- name: Set up Geth Client
+- name: Set up Consensus Client
   hosts: all
   become: true
   gather_facts: true
   vars:
-    allowed_node_types: [geth]
+    allowed_node_types: [consensus]
   vars_files:
     - group_vars/all.yml
     - group_vars/vault.yml
@@ -18,12 +18,19 @@
           ansible.builtin.include_tasks: tasks/setup_environment.yml
 
   tasks:
-    - name: Run geth role
+    - name: Run consensus client roles
       when: type in allowed_node_types
       block:
         - name: Include common handlers
           ansible.builtin.include_role:
             name: common
-        - name: Include geth role
+
+        - name: Include lighthouse role
           ansible.builtin.include_role:
-            name: geth
+            name: lighthouse
+          when: client == "lighthouse"
+
+        - name: Include prysm role
+          ansible.builtin.include_role:
+            name: prysm
+          when: client == "prysm"

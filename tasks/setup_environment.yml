@@ -17,7 +17,7 @@
       - "Environment: {{ env }}"
       - "Type: {{ type }}"
       - "Client: {{ client }}"
-      - "Version: {{ vars[project][client].version }}"
+      - "Version: {{ vars[project][client].version | default(vars[project][type].version, true) }}"
       - "Username: {{ service_identifier }}"
       - "Service Name: {{ service_identifier }}"
       - "Operating System: {{ ansible_system | lower }}"

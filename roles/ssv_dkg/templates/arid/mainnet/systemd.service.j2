@@ -1,0 +1,19 @@
+[Unit]
+Description= SSV DKG Service
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ ssv_dkg_home_dir }}
+ExecStart={{ ssv_dkg_bin_dir }}/{{ service_identifier }} start-operator \
+  --configPath ./config/{{ ssv_dkg_config_file_name }}
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ ssv_dkg_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

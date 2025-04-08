@@ -1,0 +1,23 @@
+---
+ssv_node_home_dir: /opt/{{ service_identifier }}
+
+ssv_node_bin_dir: "{{ ssv_node_home_dir }}/bin"
+ssv_node_data_dir: "{{ ssv_node_home_dir }}/data"
+ssv_node_config_dir: "{{ ssv_node_home_dir }}/config"
+ssv_node_key_dir: "{{ ssv_node_home_dir }}/key"
+ssv_node_log_dir: "{{ ssv_node_home_dir }}/log"
+
+ssv_node_directories:
+  - "{{ ssv_node_home_dir }}"
+  - "{{ ssv_node_bin_dir }}"
+  - "{{ ssv_node_data_dir }}"
+  - "{{ ssv_node_config_dir }}"
+  - "{{ ssv_node_key_dir }}"
+  - "{{ ssv_node_log_dir }}"
+
+ssv_node_log_file_path: "{{ ssv_node_log_dir }}/{{ service_identifier }}.log"
+
+ssv_node_config_file_path: "{{ ssv_node_config_dir }}/{{ ssv_node_config_file_name }}"
+
+ssv_node_private_key_file_path: "{{ ssv_node_key_dir }}/{{ ssv_node_private_key_file_name }}"
+ssv_node_password_file_path: "{{ ssv_node_key_dir }}/{{ ssv_node_password_file_name }}"

@@ -1,0 +1,49 @@
+global:
+  # Console output log level 
+  LogLevel: info
+  
+  # Debug logs file path
+  LogFilePath: {{ ssv_node_log_file_path }}
+  
+  # Number of log files preserved (roughly equivalent to number of days)
+  # Increase if you want to preserve log files for longer. This would require more disk space
+  LogFileBackups: 28
+
+db:
+  # Path to a persistent directory to store the node's database.
+  Path: {{ ssv_node_data_dir }}/db
+
+ssv:
+  # The SSV network to join to
+  # Mainnet = Network: mainnet (default)
+  # Testnet (Goerli)  = Network: jato-v2
+  # Testnet (Holesky) = Network: holesky
+  Network: mainnet
+  
+  ValidatorOptions:
+    # Whether to enable MEV block production. Requires the connected Beacon node to be MEV-enabled.
+    BuilderProposals: true
+
+eth2:
+  # HTTP URL of the Beacon node to connect to.
+  BeaconNodeAddr: http://localhost:{{ ethereum.lighthouse.ports.http }}
+
+eth1:
+  # WebSocket URL of the Eth1 node to connect to.
+  ETH1Addr: ws://localhost:{{ ethereum.nethermind.ports.json_rpc }}/ws
+
+p2p:
+  # Optionally provide the external IP address of the node, if it cannot be automatically determined.
+  HostAddress: {{ ansible_default_ipv4.address }}
+
+  # Optionally override the default TCP & UDP ports of the node.
+  TcpPort: {{ ssv.node.ports.p2p_tcp }}
+  UdpPort: {{ ssv.node.ports.p2p_udp }}
+
+KeyStore:
+  PrivateKeyFile: {{ ssv_node_private_key_file_path }}
+  PasswordFile: {{ ssv_node_password_file_path }}
+
+# This enables monitoring at the specified port, see https://docs.ssv.network/run-a-node/operator-node/maintenance/monitoring
+MetricsAPIPort: {{ ssv.node.ports.metrics }}
+SSVAPIPort: {{ ssv.node.ports.api }}

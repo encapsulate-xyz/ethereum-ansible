@@ -1,0 +1,7 @@
+---
+ssv_dkg_ufw_rules:
+  - port: "{{ ssv.dkg.ports.dkg_port }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: dkg_port

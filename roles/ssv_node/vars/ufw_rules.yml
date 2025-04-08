@@ -1,0 +1,19 @@
+---
+ssv_node_ufw_rules:
+  - port: "{{ ssv.node.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics
+
+  - port: "{{ ssv.node.ports.p2p_tcp }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: p2p_tcp
+
+  - port: "{{ ssv.node.ports.p2p_udp }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: p2p_udp

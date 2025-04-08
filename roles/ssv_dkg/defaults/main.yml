@@ -1,0 +1,27 @@
+---
+ssv_dkg_home_dir: /opt/{{ service_identifier }}
+
+ssv_dkg_bin_dir: "{{ ssv_dkg_home_dir }}/bin"
+ssv_dkg_data_dir: "{{ ssv_dkg_home_dir }}/data"
+ssv_dkg_config_dir: "{{ ssv_dkg_home_dir }}/config"
+ssv_dkg_cert_dir: "{{ ssv_dkg_home_dir }}/cert"
+ssv_dkg_key_dir: "{{ ssv_dkg_home_dir }}/key"
+ssv_dkg_log_dir: "{{ ssv_dkg_home_dir }}/log"
+
+ssv_dkg_directories:
+  - "{{ ssv_dkg_home_dir }}"
+  - "{{ ssv_dkg_bin_dir }}"
+  - "{{ ssv_dkg_data_dir }}"
+  - "{{ ssv_dkg_config_dir }}"
+  - "{{ ssv_dkg_key_dir }}"
+  - "{{ ssv_dkg_log_dir }}"
+
+ssv_dkg_log_file_path: "{{ ssv_dkg_log_dir }}/{{ service_identifier }}.log"
+
+ssv_dkg_config_file_path: "{{ ssv_dkg_config_dir }}/{{ ssv_dkg_config_file_name }}"
+
+ssv_dkg_private_key_file_path: "{{ ssv_dkg_key_dir }}/{{ ssv_dkg_private_key_file_name }}"
+ssv_dkg_password_file_path: "{{ ssv_dkg_key_dir }}/{{ ssv_dkg_password_file_name }}"
+
+ssv_dkg_tls_key_path: "{{ ssv_dkg_cert_dir }}/{{ ssv_dkg_tls_key_name }}"
+ssv_dkg_tls_cert_path: "{{ ssv_dkg_cert_dir }}/{{ ssv_dkg_tls_cert_name }}"

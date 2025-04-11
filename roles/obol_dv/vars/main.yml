@@ -1,0 +1,4 @@
+---
+obol_dv_default_binary_name: lido-dv-exit
+
+obol_dv_environment_general_file_name: "{{ service_identifier }}.env"

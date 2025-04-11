@@ -1,0 +1,29 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ obol_lodestar_ufw_rules }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ obol_lodestar_home_dir }}"
+    directories: "{{ obol_lodestar_directories }}"
+    log_file_path: "{{ obol_lodestar_log_file_path }}"
+
+- name: Include extract binary task
+  ansible.builtin.include_tasks: extract_binary.yml
+
+- name: Copy obol lodestar client systemd service file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

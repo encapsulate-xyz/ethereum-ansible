@@ -85,3 +85,5 @@ obol:
     source_url: https://github.com/ObolNetwork/lido-dv-exit
   lodestar:
     source_url: https://github.com/ChainSafe/lodestar/releases/download
+    ports:
+      metrics: 5064

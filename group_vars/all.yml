@@ -21,6 +21,9 @@ go:
   path: "{{ tmp_dir }}/go"
   module111: "on"
 
+nvm:
+  path: /opt/nvm
+
 ethereum:
   nethermind:
     source_url: https://nethdev.blob.core.windows.net/builds
@@ -66,3 +69,17 @@ ssv:
     source_url: https://github.com/ssvlabs/ssv-dkg/releases/download
     ports:
       dkg_port: 3030
+
+obol:
+  charon:
+    source_url: https://github.com/ObolNetwork/charon
+    ports:
+      p2p: 3610
+      api: 3600
+      metrics: 3620
+  ejector:
+    source_url: https://github.com/lidofinance/validator-ejector
+  dv:
+    source_url: https://github.com/ObolNetwork/lido-dv-exit
+  lodestar:
+    source_url: https://github.com/ChainSafe/lodestar/releases/download

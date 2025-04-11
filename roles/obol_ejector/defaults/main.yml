@@ -1,0 +1,15 @@
+---
+obol_ejector_home_dir: /opt/{{ service_identifier }}
+
+obol_ejector_bin_dir: "{{ obol_ejector_home_dir }}/bin"
+obol_ejector_env_dir: "{{ obol_ejector_home_dir }}/environment"
+obol_ejector_log_dir: "{{ obol_ejector_home_dir }}/log"
+
+obol_ejector_directories:
+  - "{{ obol_ejector_home_dir }}"
+  - "{{ obol_ejector_env_dir }}"
+  - "{{ obol_ejector_log_dir }}"
+
+obol_ejector_log_file_path: "{{ obol_ejector_log_dir }}/{{ service_identifier }}.log"
+
+obol_ejector_environment_general_file_path: "{{ obol_ejector_env_dir }}/{{ obol_ejector_environment_general_file_name }}"

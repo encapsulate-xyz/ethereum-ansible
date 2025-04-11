@@ -1,0 +1,39 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ obol_ejector_ufw_rules }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ obol_ejector_home_dir }}"
+    directories: "{{ obol_ejector_directories }}"
+    log_file_path: "{{ obol_ejector_log_file_path }}"
+
+- name: Include build binary task
+  ansible.builtin.include_tasks: build_binary.yml
+
+- name: Copy general environment file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/general.env.j2"
+    dest: "{{ obol_ejector_environment_general_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Copy obol ejector client systemd service file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

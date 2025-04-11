@@ -1,0 +1,16 @@
+---
+obol_lodestar_home_dir: /opt/{{ service_identifier }}
+
+obol_lodestar_bin_dir: "{{ obol_lodestar_home_dir }}/bin"
+obol_lodestar_data_dir: "{{ obol_lodestar_home_dir }}/data"
+obol_lodestar_key_dir: "{{ obol_lodestar_home_dir }}/key"
+obol_lodestar_log_dir: "{{ obol_lodestar_home_dir }}/log"
+
+obol_lodestar_directories:
+  - "{{ obol_lodestar_home_dir }}"
+  - "{{ obol_lodestar_bin_dir }}"
+  - "{{ obol_lodestar_data_dir }}"
+  - "{{ obol_lodestar_key_dir }}"
+  - "{{ obol_lodestar_log_dir }}"
+
+obol_lodestar_log_file_path: "{{ obol_lodestar_log_dir }}/{{ service_identifier }}.log"

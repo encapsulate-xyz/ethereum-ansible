@@ -17,3 +17,20 @@ ssv:
       version: 1.23.5
   dkg:
     version: v3.0.3
+
+obol:
+  charon:
+    version: v1.3.0
+    go:
+      version: 1.23.5
+    p2p_relays: https://0.relay.obol.tech,https://1.relay.obol.tech/,https://charon-relay.dsrvlabs.dev/,https://obol-relay.infstones.com/,https://relay-2.prod-relay.721.land/,https://relay-1.obol.figment.io/
+  ejector:
+    version: 1.6.0
+    node:
+      version: v18.20.5
+  dv:
+    version: v0.2.0
+    go:
+      version: 1.23.5
+  lodestar:
+    version: v1.28.1

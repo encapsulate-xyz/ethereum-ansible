@@ -1,0 +1,35 @@
+---
+- name: Set up Obol DV Exit
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    allowed_client_types: [obol]
+    allowed_node_types: [dv]
+  vars_files:
+    - group_vars/all.yml
+    - group_vars/vault.yml
+    - group_vars/{{ env }}.yml
+
+  pre_tasks:
+    - name: Setup Pre Tasks
+      when: 
+        - type in allowed_node_types
+        - client in allowed_client_types
+      block:
+        - name: Include environment setup tasks
+          ansible.builtin.include_tasks: tasks/setup_environment.yml
+
+  tasks:
+    - name: Run obol_dv role
+      when: 
+        - type in allowed_node_types
+        - client in allowed_client_types
+      block:
+        - name: Include common handlers
+          ansible.builtin.include_role:
+            name: common
+
+        - name: Include obol_dv role
+          ansible.builtin.include_role:
+            name: obol_dv

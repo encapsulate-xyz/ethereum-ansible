@@ -1,6 +1,6 @@
 ---
-obol_ejector_ufw_rules:
-  - port: "{{ obol.ejector.ports.metrics }}"
+obol_lodestar_ufw_rules:
+  - port: "{{ obol.lodestar.ports.metrics }}"
     proto: tcp
     rule: allow
     from: "{{ monitor_server_dns }}"

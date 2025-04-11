@@ -14,7 +14,7 @@
 
   pre_tasks:
     - name: Setup Pre Tasks
-      when: 
+      when:
         - type in allowed_node_types
         - client in allowed_client_types
       block:
@@ -23,7 +23,7 @@
 
   tasks:
     - name: Run obol_ejector role
-      when: 
+      when:
         - type in allowed_node_types
         - client in allowed_client_types
       block:

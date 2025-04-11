@@ -6,7 +6,7 @@
     version: "{{ obol.charon.version }}"
     force: true
 
-- name: Build the obol binary go build
+- name: Build the obol charon binary go build
   ansible.builtin.command: go build -o charon .
   args:
     chdir: "{{ tmp_dir }}/{{ service_identifier }}"
@@ -16,7 +16,7 @@
     GOROOT: "{{ go.root }}"
     GOPATH: "{{ go.path }}"
     GO111MODULE: "{{ go.module111 }}"
-  
+
 - name: Copy the built binary to the target directory
   ansible.builtin.copy:
     src: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_charon_default_binary_name }}"

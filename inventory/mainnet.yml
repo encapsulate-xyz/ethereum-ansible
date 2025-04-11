@@ -64,7 +64,6 @@ all:
           client: ssv
           cluster: manta
 
-
     obol:
       hosts:
         zypher_obol_charon_client:

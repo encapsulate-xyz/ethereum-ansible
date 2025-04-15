@@ -1,8 +1,13 @@
 ---
-- name: Set project and service identifier in facts
+- name: Set project and suffix variables
   ansible.builtin.set_fact:
     project: "{{ group_names[0] }}"
-    service_identifier: "{{ group_names[0] }}{{ '' if type in default_node_types else '-' + type }}"
+    client_suffix: "{{ '-' + client if client is defined else '' }}"
+    cluster_suffix: "{{ '-' + cluster if cluster is defined else '' }}"
+
+- name: Set service identifier in facts
+  ansible.builtin.set_fact:
+    service_identifier: "{{ group_names[0] }}{{ '' if type in default_node_types else '-' + type }}{{ client_suffix }}{{ cluster_suffix }}"
 
 - name: Set architecture variable based on system architecture
   ansible.builtin.set_fact:
@@ -16,8 +21,8 @@
       - "Project: {{ project }}"
       - "Environment: {{ env }}"
       - "Type: {{ type }}"
-      - "Client: {{ client }}"
-      - "Version: {{ vars[project][client].version | default(vars[project][type].version, true) }}"
+      - "Client: {{ (client) if client is defined else project }}"
+      - "Version: {{ (vars[project][client].version) if client is defined else vars[project][type].version }}"
       - "Username: {{ service_identifier }}"
       - "Service Name: {{ service_identifier }}"
       - "Operating System: {{ ansible_system | lower }}"
@@ -41,3 +46,12 @@
 
 - name: Include configure ufw task
   ansible.builtin.include_tasks: tasks/configure_ufw.yml
+
+- name: Remove existing Go directories (if any)
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  become: true
+  loop:
+    - "{{ go.root }}"
+    - "{{ go.path }}"

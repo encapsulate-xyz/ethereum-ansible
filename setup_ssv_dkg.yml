@@ -12,7 +12,7 @@
 
   pre_tasks:
     - name: Setup Pre Tasks
-      when: 
+      when:
         - type in allowed_node_types
       block:
         - name: Include environment setup tasks
@@ -20,7 +20,7 @@
 
   tasks:
     - name: Run ssv_dkg role
-      when: 
+      when:
         - type in allowed_node_types
       block:
         - name: Include common handlers

@@ -63,6 +63,6 @@ ssv:
       p2p_tcp: 13001
       p2p_udp: 12001
   dkg:
-    source_url: https://github.com/ssvlabs/ssv-dkg/releases/download
+    source_url: https://github.com/ssvlabs/ssv-dkg
     ports:
       dkg_port: 3030

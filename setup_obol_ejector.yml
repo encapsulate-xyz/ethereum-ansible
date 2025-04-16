@@ -1,0 +1,33 @@
+---
+- name: Set up Obol Ejector
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    allowed_node_types: [ejector]
+  vars_files:
+    - group_vars/all.yml
+    - group_vars/vault.yml
+    - group_vars/default.yml
+    - group_vars/{{ env }}.yml
+
+  pre_tasks:
+    - name: Setup Pre Tasks
+      when:
+        - type in allowed_node_types
+      block:
+        - name: Include environment setup tasks
+          ansible.builtin.include_tasks: tasks/setup_environment.yml
+
+  tasks:
+    - name: Run obol_ejector role
+      when:
+        - type in allowed_node_types
+      block:
+        - name: Include common handlers
+          ansible.builtin.include_role:
+            name: common
+
+        - name: Include obol_ejector role
+          ansible.builtin.include_role:
+            name: obol_ejector

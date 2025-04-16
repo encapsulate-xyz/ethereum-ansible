@@ -1,0 +1,30 @@
+---
+- name: Create the bin directory
+  ansible.builtin.file:
+    path: "{{ obol_ejector_bin_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Clone the repository
+  ansible.builtin.git:
+    repo: "{{ obol.ejector.source_url }}"
+    dest: "{{ obol_ejector_bin_dir }}"
+    version: "{{ obol.ejector.version }}"
+    force: true
+  notify:
+    - Restart service
+
+- name: Build ejector binary
+  ansible.builtin.shell: |
+    source {{ nvm.path }}/nvm.sh
+    npm install yarn
+    yarn
+    yarn build
+  args:
+    chdir: "{{ obol_ejector_bin_dir }}"
+    executable: /bin/bash
+  environment:
+    PATH: "{{ nvm.path }}/versions/node/{{ obol.ejector.node.version }}/bin:{{ ansible_env.PATH }}"
+  changed_when: false

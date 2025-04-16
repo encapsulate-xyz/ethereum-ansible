@@ -1,0 +1,7 @@
+---
+obol_ejector_ufw_rules:
+  - port: "{{ obol.ejector.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics

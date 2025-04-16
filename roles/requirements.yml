@@ -3,3 +3,7 @@ roles:
   - name: fubarhouse.golang
     src: fubarhouse.golang
     version: 2.10.0
+
+  - name: morgangraphics.ansible-role-nvm
+    src: morgangraphics.ansible-role-nvm
+    version: v2.0.0

@@ -1,0 +1,13 @@
+---
+obol_charon_ufw_rules:
+  - port: "{{ obol.charon.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: metrics
+
+  - port: "{{ obol.charon.ports.p2p }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: p2p

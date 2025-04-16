@@ -1,0 +1,2 @@
+---
+obol_ejector_environment_general_file_name: "{{ service_identifier }}.env"

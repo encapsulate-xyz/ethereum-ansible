@@ -1,0 +1,56 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ ssv_node_ufw_rules }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ ssv_node_home_dir }}"
+    directories: "{{ ssv_node_directories }}"
+    log_file_path: "{{ ssv_node_log_file_path }}"
+
+- name: Include build binary task
+  ansible.builtin.include_tasks: build_binary.yml
+
+- name: Copy ssv config
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/config.yml.j2"
+    dest: "{{ ssv_node_config_file_path }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Fetch secrets from HCP Vault and save to files
+  when: fetch_validator_keys | default(false) | bool
+  block:
+    - name: Fetch password file and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ ssv_node_password_file_name }}"
+        secret_destination_path: "{{ ssv_node_password_file_path }}"
+        secret_type: key
+
+    - name: Fetch private key and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ ssv_node_private_key_file_name }}"
+        secret_destination_path: "{{ ssv_node_private_key_file_path }}"
+        secret_type: json
+
+- name: Copy ssv client systemd service file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

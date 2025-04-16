@@ -16,6 +16,11 @@ default_node_types:
 
 tmp_dir: /tmp
 
+go:
+  root: /usr/local/go
+  path: "{{ tmp_dir }}/go"
+  module111: "on"
+
 ethereum:
   nethermind:
     source_url: https://nethdev.blob.core.windows.net/builds
@@ -48,3 +53,16 @@ ethereum:
       p2p_udp: 12000
       metrics: 8008
       quic: 13000
+
+ssv:
+  node:
+    source_url: https://github.com/ssvlabs/ssv
+    ports:
+      metrics: 15000
+      api: 16000
+      p2p_tcp: 13001
+      p2p_udp: 12001
+  dkg:
+    source_url: https://github.com/ssvlabs/ssv-dkg
+    ports:
+      dkg_port: 3030

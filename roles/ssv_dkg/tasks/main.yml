@@ -1,0 +1,73 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ ssv_dkg_ufw_rules }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ ssv_dkg_home_dir }}"
+    directories: "{{ ssv_dkg_directories }}"
+    log_file_path: "{{ ssv_dkg_log_file_path }}"
+
+- name: Include build binary task
+  ansible.builtin.include_tasks: build_binary.yml
+
+- name: Copy ssv dkg config
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/config.yml.j2"
+    dest: "{{ ssv_dkg_config_file_path }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Copy tls cert
+  ansible.builtin.copy:
+    src: "{{ cluster }}/{{ env }}/tls.crt"
+    dest: "{{ ssv_dkg_tls_cert_path }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    mode: "0444"
+  notify:
+    - Restart service
+
+- name: Fetch secrets from HCP Vault and save to files
+  when: fetch_validator_keys | default(false) | bool
+  block:
+    - name: Fetch password file and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ ssv_dkg_password_file_name }}"
+        secret_destination_path: "{{ ssv_dkg_password_file_path }}"
+        secret_type: key
+
+    - name: Fetch private key and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ ssv_dkg_private_key_file_name }}"
+        secret_destination_path: "{{ ssv_dkg_private_key_file_path }}"
+        secret_type: json
+
+    - name: Fetch tls key and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ ssv_dkg_tls_key_name }}"
+        secret_destination_path: "{{ ssv_dkg_tls_key_path }}"
+        secret_type: key
+
+- name: Copy ssv_dkg client systemd service file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

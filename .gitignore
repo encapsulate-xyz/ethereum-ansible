@@ -3,3 +3,4 @@
 /ansible_vault_password
 *.iml
 .vscode
+.ansible

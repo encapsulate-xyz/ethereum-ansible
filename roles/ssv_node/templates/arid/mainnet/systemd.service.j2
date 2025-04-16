@@ -1,0 +1,19 @@
+[Unit]
+Description= SSV Service
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ ssv_node_home_dir }}
+ExecStart={{ ssv_node_bin_dir }}/{{ service_identifier }} start-node \
+  --config {{ ssv_node_config_file_path }}
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ ssv_node_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+---
+mev_boost_home_dir: /opt/{{ service_identifier }}
+
+mev_boost_bin_dir: "{{ mev_boost_home_dir }}/bin"
+mev_boost_log_dir: "{{ mev_boost_home_dir }}/log"
+
+mev_boost_directories:
+  - "{{ mev_boost_home_dir }}"
+  - "{{ mev_boost_bin_dir }}"
+  - "{{ mev_boost_log_dir }}"
+
+mev_boost_log_file_path: "{{ mev_boost_log_dir }}/{{ service_identifier }}.log"

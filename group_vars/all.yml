@@ -56,6 +56,10 @@ ethereum:
       p2p_udp: 12000
       metrics: 8008
       quic: 13000
+  mev_boost:
+    source_url: https://github.com/flashbots/mev-boost/releases/download
+    ports:
+      listen_port: 18550
 
 ssv:
   node:

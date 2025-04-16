@@ -65,23 +65,19 @@ all:
         zypher_obol_charon_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: charon
-          client: obol
           cluster: zypher
 
         zypher_obol_ejector_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: ejector
-          client: obol
           cluster: zypher
 
         zypher_obol_dv_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: dv
-          client: obol
           cluster: zypher
 
         zypher_obol_lodestar_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: lodestar
-          client: obol
           cluster: zypher

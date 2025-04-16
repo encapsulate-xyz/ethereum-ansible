@@ -36,7 +36,7 @@ all:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: geth
-        
+
         arid.validator.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
         manta.validator.ethereum.mainnet.encapsulate.xyz:

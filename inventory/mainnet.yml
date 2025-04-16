@@ -36,6 +36,13 @@ all:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: geth
+        
+        arid.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
+        manta.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
+        zypher.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
 
     ssv:
       hosts:
@@ -62,6 +69,7 @@ all:
 
     obol:
       hosts:
+
         zypher_obol_charon_client:
           ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
           type: charon

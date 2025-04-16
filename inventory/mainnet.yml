@@ -43,25 +43,21 @@ all:
         arid_ssv_node_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: node
-          client: ssv
           cluster: arid
 
         arid_ssv_dkg_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: dkg
-          client: ssv
           cluster: arid
 
         manta_ssv_node_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: node
-          client: ssv
           cluster: manta
 
         manta_ssv_dkg_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: dkg
-          client: ssv
           cluster: manta
 
     obol:

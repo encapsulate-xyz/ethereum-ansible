@@ -4,7 +4,6 @@
   become: true
   gather_facts: true
   vars:
-    allowed_client_types: [ssv]
     allowed_node_types: [dkg]
   vars_files:
     - group_vars/all.yml
@@ -13,18 +12,16 @@
 
   pre_tasks:
     - name: Setup Pre Tasks
-      when: 
+      when:
         - type in allowed_node_types
-        - client in allowed_client_types
       block:
         - name: Include environment setup tasks
           ansible.builtin.include_tasks: tasks/setup_environment.yml
 
   tasks:
     - name: Run ssv_dkg role
-      when: 
+      when:
         - type in allowed_node_types
-        - client in allowed_client_types
       block:
         - name: Include common handlers
           ansible.builtin.include_role:

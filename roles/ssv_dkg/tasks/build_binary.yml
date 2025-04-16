@@ -1,0 +1,33 @@
+---
+- name: Clone the repository to /tmp
+  ansible.builtin.git:
+    repo: "{{ ssv.dkg.source_url }}"
+    dest: "{{ tmp_dir }}/{{ service_identifier }}"
+    version: "{{ ssv.dkg.version }}"
+    force: true
+
+- name: Build the ssv dkg binary using `make build`
+  community.general.make:
+    chdir: "{{ tmp_dir }}/{{ service_identifier }}"
+    target: build
+  environment:
+    PATH: "{{ go.root }}/bin:{{ ansible_env.PATH }}"
+    GOROOT: "{{ go.root }}"
+    GOPATH: "{{ go.path }}"
+    GO111MODULE: "{{ go.module111 }}"
+
+- name: Copy the built binary to the target directory
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/bin/{{ ssv_dkg_default_binary_name }}"
+    dest: "{{ ssv_dkg_bin_dir }}/{{ service_identifier }}"
+    mode: "0755"
+    owner: root
+    group: root
+    remote_src: true
+  notify:
+    - Restart service
+
+- name: Clean up the temporary repository directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: absent

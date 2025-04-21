@@ -13,6 +13,7 @@ ssv_dkg_directories:
   - "{{ ssv_dkg_bin_dir }}"
   - "{{ ssv_dkg_data_dir }}"
   - "{{ ssv_dkg_config_dir }}"
+  - "{{ ssv_dkg_cert_dir }}"
   - "{{ ssv_dkg_key_dir }}"
   - "{{ ssv_dkg_log_dir }}"
 

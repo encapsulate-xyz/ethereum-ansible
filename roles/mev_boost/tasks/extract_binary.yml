@@ -1,0 +1,40 @@
+---
+- name: Set a temporary variable
+  ansible.builtin.set_fact:
+    mev_boost_path: "{{ mev_boost_default_binary_name }}_{{ ethereum.mev_boost.version }}_{{ ansible_system | lower }}_{{ system_architecture }}"
+
+- name: Create tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Unarchive the binary
+  vars:
+    suffix_url: "{{ mev_boost_path }}.tar.gz"
+  ansible.builtin.unarchive:
+    src: "{{ ethereum.mev_boost.source_url }}/v{{ ethereum.mev_boost.version }}/{{ suffix_url }}"
+    dest: "{{ tmp_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy binary file
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ mev_boost_default_binary_name }}"
+    dest: "{{ mev_boost_bin_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    force: true
+    mode: "0755"
+  notify:
+    - Restart service
+
+- name: Clear tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: absent

@@ -6,36 +6,54 @@ all:
   children:
     ethereum:
       hosts:
+
         arid_consensus_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: consensus
           client: lighthouse
+
         arid_execution_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: nethermind
+
         manta_consensus_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: consensus
           client: lighthouse
+
         manta_execution_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: nethermind
+
         zephyr_consensus_client:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: consensus
           client: prysm
+
         zephyr_execution_client:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: geth
+        
+        arid.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
+
+        manta.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
+
+        zephyr.validator.ethereum.mainnet.encapsulate.xyz:
+          type: mev_boost
+
     ssv:
       hosts:
+
         arid_ssv_node_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: node
           cluster: arid
+
         arid_ssv_dkg_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
           type: dkg
@@ -45,6 +63,7 @@ all:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: node
           cluster: manta
+
         manta_ssv_dkg_client:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: dkg

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+KEYSTORES_DIR="{{ obol_lodestar_key_dir }}"
+SECRETS_DIR="{{ obol_lodestar_secret_dir }}"
+
+IMPORTED_COUNT=0
+EXISTING_COUNT=0
+
+for f in /opt/obol-charon-{{ cluster }}/key/validator_keys/keystore-*.json; do
+    echo "Importing key ${f}"
+
+    # Extract pubkey from keystore file
+    PUBKEY="0x$(grep '"pubkey"' "$f" | awk -F'"' '{print $4}')"
+
+    PUBKEY_DIR="${KEYSTORES_DIR}/${PUBKEY}"
+
+    # Skip import if keystore already exists
+    if [ -d "${PUBKEY_DIR}" ]; then
+        EXISTING_COUNT=$((EXISTING_COUNT + 1))
+        continue
+    fi
+
+    mkdir -p "${PUBKEY_DIR}"
+
+    # Copy the keystore file to persisted keys backend
+    install -m 600 "$f" "${PUBKEY_DIR}/voting-keystore.json"
+
+    # Copy the corresponding password file
+    PASSWORD_FILE="${f%.json}.txt"
+    install -m 600 "${PASSWORD_FILE}" "${SECRETS_DIR}/${PUBKEY}"
+
+    IMPORTED_COUNT=$((IMPORTED_COUNT + 1))
+done

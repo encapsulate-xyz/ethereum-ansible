@@ -17,6 +17,9 @@
 - name: Include extract binary task
   ansible.builtin.include_tasks: extract_binary.yml
 
+- name: Include import_keys task
+  ansible.builtin.include_tasks: import_keys.yml
+
 - name: Copy obol lodestar client systemd service file
   ansible.builtin.template:
     src: "{{ cluster }}/{{ env }}/systemd.service.j2"

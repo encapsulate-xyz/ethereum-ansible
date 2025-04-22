@@ -9,7 +9,7 @@ WorkingDirectory={{ obol_lodestar_bin_dir }}
 ExecStart={{ obol_lodestar_bin_dir }}/{{ service_identifier }} validator \
     --dataDir {{ obol_lodestar_data_dir }} \
     --keystoresDir {{ obol_lodestar_key_dir }} \
-    --secretsDir {{ obol_lodestar_key_dir }} \
+    --secretsDir {{ obol_lodestar_secret_dir }} \
     --network="mainnet" \
     --metrics=true \
     --metrics.address="0.0.0.0" \
@@ -17,7 +17,8 @@ ExecStart={{ obol_lodestar_bin_dir }}/{{ service_identifier }} validator \
     --beaconNodes="http://localhost:{{ obol.charon.ports.api }}" \
     --builder="true" \
     --builder.selection="builderalways" \
-    --distributed
+    --distributed \
+    --logFile none
 Restart=always
 RestartSec=4
 LimitNOFILE=65536

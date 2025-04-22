@@ -27,6 +27,9 @@
         secret_destination_path: "{{ obol_charon_private_key_file_path }}"
         secret_type: key
 
+# Get cluster lock file 
+# And also the validator_keys files from vault ?
+
 - name: Copy obol charon client systemd service file
   ansible.builtin.template:
     src: "{{ cluster }}/{{ env }}/systemd.service.j2"

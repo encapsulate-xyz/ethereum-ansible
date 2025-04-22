@@ -19,6 +19,8 @@
   notify:
     - Restart service
 
+# For lido-dv it need cluster lock file, charon private key and validator_keys in same folder
+
 - name: Copy obol dv client systemd service file
   ansible.builtin.template:
     src: "{{ cluster }}/{{ env }}/systemd.service.j2"

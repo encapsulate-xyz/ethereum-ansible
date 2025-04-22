@@ -2,6 +2,7 @@
 obol_dv_home_dir: /opt/{{ service_identifier }}
 
 obol_dv_bin_dir: "{{ obol_dv_home_dir }}/bin"
+obol_dv_charon_run_time_dir: "{{ obol_dv_home_dir }}/charon"
 obol_dv_data_dir: "{{ obol_dv_home_dir }}/data"
 obol_dv_env_dir: "{{ obol_dv_home_dir }}/environment"
 obol_dv_log_dir: "{{ obol_dv_home_dir }}/log"
@@ -9,6 +10,7 @@ obol_dv_log_dir: "{{ obol_dv_home_dir }}/log"
 obol_dv_directories:
   - "{{ obol_dv_home_dir }}"
   - "{{ obol_dv_bin_dir }}"
+  - "{{ obol_dv_charon_run_time_dir }}"
   - "{{ obol_dv_data_dir }}"
   - "{{ obol_dv_env_dir }}"
   - "{{ obol_dv_log_dir }}"

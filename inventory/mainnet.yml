@@ -70,22 +70,22 @@ all:
     obol:
       hosts:
 
-        zypher_obol_charon_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_obol_charon_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: charon
-          cluster: zypher
+          cluster: zephyr
 
-        zypher_obol_ejector_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_obol_ejector_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: ejector
-          cluster: zypher
+          cluster: zephyr
 
-        zypher_obol_dv_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_obol_dv_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: dv
-          cluster: zypher
+          cluster: zephyr
 
-        zypher_obol_lodestar_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_obol_lodestar_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: lodestar
-          cluster: zypher
+          cluster: zephyr

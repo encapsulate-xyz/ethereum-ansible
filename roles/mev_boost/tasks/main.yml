@@ -7,6 +7,10 @@
   ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
   loop: "{{ mev_boost_ufw_rules }}"
 
+- name: Set Relay list
+  set_fact:
+    relay_list: "{{ lookup('file', 'relays.txt').splitlines() }}"
+
 - name: Include user creation task
   ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
   vars:

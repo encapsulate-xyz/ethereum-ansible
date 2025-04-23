@@ -1,0 +1,26 @@
+[Unit]
+Description=Mev-boost
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ mev_boost_home_dir }}
+ExecStart={{ mev_boost_bin_dir }}/{{ service_identifier }} \
+-mainnet \
+-addr 0.0.0.0:{{ ethereum.mev_boost.ports.listen_port }} \
+{% for relay in relay_list %}
+-relay {{ relay }} \
+{% endfor %}
+-relay-check
+Restart=always
+RestartSec=4
+LimitNOFILE=1000000
+KillSignal=SIGINT
+TimeoutStopSec=900s
+MemoryMax=64G
+StandardOutput=append:{{ mev_boost_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ mev_boost_ufw_rules }}"
+
+- name: Set Relay list
+  ansible.builtin.set_fact:
+    relay_list: "{{ lookup('file', 'relays.txt').splitlines() }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ mev_boost_home_dir }}"
+    directories: "{{ mev_boost_directories }}"
+    log_file_path: "{{ mev_boost_log_file_path }}"
+
+- name: Include extract binary task
+  ansible.builtin.include_tasks: extract_binary.yml
+
+- name: Copy mev_boost client systemd service file
+  ansible.builtin.template:
+    src: "{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

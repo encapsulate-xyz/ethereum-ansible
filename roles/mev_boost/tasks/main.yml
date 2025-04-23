@@ -8,7 +8,7 @@
   loop: "{{ mev_boost_ufw_rules }}"
 
 - name: Set Relay list
-  set_fact:
+  ansible.builtin.set_fact:
     relay_list: "{{ lookup('file', 'relays.txt').splitlines() }}"
 
 - name: Include user creation task

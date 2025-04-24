@@ -4,7 +4,7 @@
   become: true
   gather_facts: true
   vars:
-    allowed_node_types: [dv]
+    allowed_node_types: [dv_exit]
   vars_files:
     - group_vars/all.yml
     - group_vars/vault.yml
@@ -19,7 +19,7 @@
           ansible.builtin.include_tasks: tasks/setup_environment.yml
 
   tasks:
-    - name: Run obol_dv role
+    - name: Run obol_dv_exit role
       when:
         - type in allowed_node_types
       block:
@@ -27,6 +27,6 @@
           ansible.builtin.include_role:
             name: common
 
-        - name: Include obol_dv role
+        - name: Include obol_dv_exit role
           ansible.builtin.include_role:
-            name: obol_dv
+            name: obol_dv_exit

@@ -5,14 +5,14 @@ Description= Obol DV Service
 Type=simple
 User={{ service_identifier }}
 Group={{ service_identifier }}
-WorkingDirectory={{ obol_dv_home_dir }}
-EnvironmentFile={{ obol_dv_environment_general_file_path }}
-ExecStart={{ obol_dv_bin_dir }}/{{ service_identifier }} run
+WorkingDirectory={{ obol_dv_exit_home_dir }}
+EnvironmentFile={{ obol_dv_exit_environment_general_file_path }}
+ExecStart={{ obol_dv_exit_bin_dir }}/{{ service_identifier }} run
 Restart=always
 RestartSec=4
 LimitNOFILE=65536
 MemoryMax=64G
-StandardOutput=append:{{ obol_dv_log_file_path }}
+StandardOutput=append:{{ obol_dv_exit_log_file_path }}
 StandardError=inherit
 
 [Install]

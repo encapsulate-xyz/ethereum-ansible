@@ -1,16 +1,16 @@
 ---
 - name: Clone the repository to /tmp
   ansible.builtin.git:
-    repo: "{{ obol.dv.source_url }}"
+    repo: "{{ obol.dv_exit.source_url }}"
     dest: "{{ tmp_dir }}/{{ service_identifier }}"
-    version: "{{ obol.dv.version }}"
+    version: "{{ obol.dv_exit.version }}"
     force: true
 
-- name: Build the obol dv binary go build
+- name: Build the obol dv_exit binary go build
   ansible.builtin.command: go build -o lido-dv-exit .
   args:
     chdir: "{{ tmp_dir }}/{{ service_identifier }}"
-    creates: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_dv_default_binary_name }}"
+    creates: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_dv_exit_default_binary_name }}"
   environment:
     PATH: "{{ go.root }}/bin:{{ ansible_env.PATH }}"
     GOROOT: "{{ go.root }}"
@@ -19,8 +19,8 @@
 
 - name: Copy the built binary to the target directory
   ansible.builtin.copy:
-    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_dv_default_binary_name }}"
-    dest: "{{ obol_dv_bin_dir }}/{{ service_identifier }}"
+    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_dv_exit_default_binary_name }}"
+    dest: "{{ obol_dv_exit_bin_dir }}/{{ service_identifier }}"
     mode: "0755"
     owner: root
     group: root

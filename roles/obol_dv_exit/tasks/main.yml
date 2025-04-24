@@ -2,9 +2,9 @@
 - name: Include user creation task
   ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
   vars:
-    home: "{{ obol_dv_home_dir }}"
-    directories: "{{ obol_dv_directories }}"
-    log_file_path: "{{ obol_dv_log_file_path }}"
+    home: "{{ obol_dv_exit_home_dir }}"
+    directories: "{{ obol_dv_exit_directories }}"
+    log_file_path: "{{ obol_dv_exit_log_file_path }}"
 
 - name: Include build binary task
   ansible.builtin.include_tasks: build_binary.yml
@@ -12,7 +12,7 @@
 - name: Copy general environment file
   ansible.builtin.template:
     src: "{{ cluster }}/{{ env }}/general.env.j2"
-    dest: "{{ obol_dv_environment_general_file_path }}"
+    dest: "{{ obol_dv_exit_environment_general_file_path }}"
     owner: root
     group: root
     mode: "0644"

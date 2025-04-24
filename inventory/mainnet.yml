@@ -82,9 +82,9 @@ all:
           type: ejector
           cluster: zephyr
 
-        zephyr_obol_dv_client:
+        zephyr_obol_dv_exit_client:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
-          type: dv
+          type: dv_exit
           cluster: zephyr
 
         zephyr_obol_lodestar_client:

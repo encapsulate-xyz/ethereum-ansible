@@ -85,7 +85,7 @@ obol:
     source_url: https://github.com/lidofinance/validator-ejector
     ports:
       http: 8989
-  dv:
+  dv_exit:
     source_url: https://github.com/ObolNetwork/lido-dv-exit
   lodestar:
     source_url: https://github.com/ChainSafe/lodestar/releases/download

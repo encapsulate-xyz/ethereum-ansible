@@ -15,6 +15,7 @@ obol_charon_directories:
   - "{{ obol_charon_config_dir }}"
   - "{{ obol_charon_env_dir }}"
   - "{{ obol_charon_key_dir }}"
+  - "{{ obol_charon_validator_keys_dir }}"
   - "{{ obol_charon_log_dir }}"
 
 obol_charon_log_file_path: "{{ obol_charon_log_dir }}/{{ service_identifier }}.log"

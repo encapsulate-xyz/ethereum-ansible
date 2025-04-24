@@ -19,6 +19,7 @@
 
 - name: Include import_keys task
   ansible.builtin.include_tasks: import_keys.yml
+  when: import_keys | default(false) | bool
 
 - name: Copy obol lodestar client systemd service file
   ansible.builtin.template:

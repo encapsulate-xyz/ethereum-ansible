@@ -14,7 +14,7 @@ all:
 
         arid_execution_client:
           ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
-          type: consensus
+          type: execution
           client: nethermind
 
         manta_consensus_client:
@@ -27,21 +27,23 @@ all:
           type: execution
           client: nethermind
 
-        zypher_consensus_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_consensus_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: consensus
           client: prysm
 
-        zypher_execution_client:
-          ansible_host: zypher.validator.ethereum.mainnet.encapsulate.xyz
+        zephyr_execution_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: geth
-
+        
         arid.validator.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
+
         manta.validator.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
-        zypher.validator.ethereum.mainnet.encapsulate.xyz:
+
+        zephyr.validator.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
 
     ssv:

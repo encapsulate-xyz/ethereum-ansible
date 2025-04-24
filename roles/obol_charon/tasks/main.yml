@@ -30,6 +30,16 @@
 # Get cluster lock file 
 # And also the validator_keys files from vault ?
 
+- name: Copy general environment file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/general.env.j2"
+    dest: "{{ obol_charon_environment_general_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart service
+
 - name: Copy obol charon client systemd service file
   ansible.builtin.template:
     src: "{{ cluster }}/{{ env }}/systemd.service.j2"

@@ -6,21 +6,8 @@ Type=simple
 User={{ service_identifier }}
 Group={{ service_identifier }}
 WorkingDirectory={{ obol_charon_home_dir }}
-ExecStart={{ obol_charon_bin_dir }}/{{ service_identifier }} run \
-  --private-key-file {{ obol_charon_private_key_file_path }} \
-  --simnet-validator-keys-dir {{ obol_charon_validator_keys_dir }} \
-  --lock-file {{ obol_charon_lock_file_path }} \
-  --beacon-node-endpoints http://localhost:{{ ethereum.prysm.ports.grpc }} \
-  --beacon-node-submit-timeout 4s \
-  --beacon-node-timeout 3s \
-  --p2p-relays {{ obol.charon.p2p_relays }} \
-  --p2p-external-hostname {{ ansible_host }} \
-  --p2p-tcp-address 0.0.0.0:{{ obol.charon.ports.p2p }}  \
-  --validator-api-address 0.0.0.0:{{ obol.charon.ports.api }} \
-  --monitoring-address 0.0.0.0:{{ obol.charon.ports.metrics }} \
-  --builder-api true \
-  --feature-set-enable eager_double_linear,consensus_participate \
-  --nickname {{ org }}
+EnvironmentFile={{ obol_charon_environment_general_file_path }}
+ExecStart={{ obol_charon_bin_dir }}/{{ service_identifier }} run
 Restart=always
 RestartSec=4
 LimitNOFILE=65536

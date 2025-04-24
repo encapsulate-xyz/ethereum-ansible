@@ -3,6 +3,7 @@ obol_charon_home_dir: /opt/{{ service_identifier }}
 
 obol_charon_bin_dir: "{{ obol_charon_home_dir }}/bin"
 obol_charon_config_dir: "{{ obol_charon_home_dir }}/config"
+obol_charon_env_dir: "{{ obol_charon_home_dir }}/environment"
 obol_charon_key_dir: "{{ obol_charon_home_dir }}/key"
 obol_charon_log_dir: "{{ obol_charon_home_dir }}/log"
 
@@ -12,11 +13,13 @@ obol_charon_directories:
   - "{{ obol_charon_home_dir }}"
   - "{{ obol_charon_bin_dir }}"
   - "{{ obol_charon_config_dir }}"
+  - "{{ obol_charon_env_dir }}"
   - "{{ obol_charon_key_dir }}"
   - "{{ obol_charon_log_dir }}"
 
 obol_charon_log_file_path: "{{ obol_charon_log_dir }}/{{ service_identifier }}.log"
 
 obol_charon_private_key_file_path: "{{ obol_charon_key_dir }}/{{ obol_charon_private_key_file_name }}"
-
 obol_charon_lock_file_path: "{{ obol_charon_config_dir }}/{{ obol_charon_lock_file_name }}"
+
+obol_charon_environment_general_file_path: "{{ obol_charon_env_dir }}/{{ obol_charon_environment_general_file_name }}"

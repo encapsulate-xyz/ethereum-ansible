@@ -81,6 +81,7 @@ all:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: ejector
           cluster: zephyr
+          obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
 
         zephyr_obol_dv_exit_client:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz

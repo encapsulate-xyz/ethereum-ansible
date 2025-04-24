@@ -20,7 +20,7 @@
   ansible.builtin.shell: |
     source {{ nvm.path }}/nvm.sh
     npm install yarn
-    yarn
+    yarn install
     yarn build
   args:
     chdir: "{{ obol_ejector_bin_dir }}"

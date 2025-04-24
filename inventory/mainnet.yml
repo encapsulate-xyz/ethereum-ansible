@@ -87,6 +87,7 @@ all:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: dv_exit
           cluster: zephyr
+          charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
 
         zephyr_obol_lodestar_client:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz

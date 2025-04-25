@@ -28,12 +28,12 @@ obol:
     go:
       version: 1.23.5
   ejector:
-    version: 1.6.0
+    version: 1.7.0
     node:
-      version: v18.20.5
+      version: v16.20.2
   dv_exit:
     version: v0.2.0
     go:
       version: 1.23.5
   lodestar:
-    version: v1.28.1
+    version: v1.29.0

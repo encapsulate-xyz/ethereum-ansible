@@ -37,7 +37,7 @@
     - name: Fetch validator_keys and save
       ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
       vars:
-        vault_secret_source_dir: "{{ project }}/{{ org }}/{{ type }}/validator_keys"
+        vault_secret_source_dir: "{{ project }}/{{ org }}/{{ type }}/{{ obol_charon_validator_keys_dir_name }}"
         secret_destination_dir: "{{ obol_charon_validator_keys_dir }}"
         secret_type: dir
 

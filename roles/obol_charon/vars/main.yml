@@ -6,3 +6,5 @@ obol_charon_private_key_file_name: charon-enr-private-key
 obol_charon_lock_file_name: cluster-lock.json
 
 obol_charon_environment_general_file_name: "{{ service_identifier }}.env"
+
+obol_charon_validator_keys_dir_name: validator_keys

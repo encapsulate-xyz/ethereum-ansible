@@ -36,7 +36,7 @@ all:
           ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
           type: execution
           client: geth
-        
+
         arid.validator.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
 
@@ -68,3 +68,28 @@ all:
           ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
           type: dkg
           cluster: manta
+
+    obol:
+      hosts:
+
+        zephyr_obol_charon_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          type: charon
+          cluster: zephyr
+
+        zephyr_obol_ejector_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          type: ejector
+          cluster: zephyr
+          obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
+
+        zephyr_obol_dv_exit_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          type: dv_exit
+          cluster: zephyr
+          charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
+
+        zephyr_obol_lodestar_client:
+          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          type: lodestar
+          cluster: zephyr

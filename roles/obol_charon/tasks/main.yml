@@ -1,0 +1,63 @@
+---
+- name: Include the ufw rules vars file
+  ansible.builtin.include_vars:
+    file: vars/ufw_rules.yml
+
+- name: Apply UFW rules
+  ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+  loop: "{{ obol_charon_ufw_rules }}"
+
+- name: Include user creation task
+  ansible.builtin.include_tasks: tasks/create_user_and_directories.yml
+  vars:
+    home: "{{ obol_charon_home_dir }}"
+    directories: "{{ obol_charon_directories }}"
+    log_file_path: "{{ obol_charon_log_file_path }}"
+
+- name: Include build binary task
+  ansible.builtin.include_tasks: build_binary.yml
+
+- name: Fetch secrets from HCP Vault and save to files
+  when: fetch_validator_keys | default(false) | bool
+  block:
+    - name: Fetch private key and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ obol_charon_private_key_file_name }}"
+        secret_destination_path: "{{ obol_charon_private_key_file_path }}"
+        secret_type: key
+
+    - name: Fetch cluster lock file and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_path: "{{ project }}/{{ org }}/{{ type }}/{{ obol_charon_lock_file_name }}"
+        secret_destination_path: "{{ obol_charon_lock_file_path }}"
+        secret_type: json
+
+    - name: Fetch validator_keys and save
+      ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml
+      vars:
+        vault_secret_source_dir: "{{ project }}/{{ org }}/{{ type }}/{{ obol_charon_validator_keys_dir_name }}"
+        secret_destination_dir: "{{ obol_charon_validator_keys_dir }}"
+        secret_type: dir
+
+- name: Copy general environment file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/general.env.j2"
+    dest: "{{ obol_charon_environment_general_file_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Copy obol charon client systemd service file
+  ansible.builtin.template:
+    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    dest: /etc/systemd/system/{{ service_identifier }}.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Reload service
+    - Restart service

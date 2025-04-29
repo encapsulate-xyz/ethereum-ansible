@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: morgangraphics.ansible-role-nvm
+    nvm_version: "{{ nvm.version }}"
+    nodejs_version: "{{ obol.ejector.node.version }}"
+    nvm_dir: "{{ nvm.path }}"

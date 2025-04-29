@@ -1,0 +1,14 @@
+---
+- name: Copy import keys script
+  ansible.builtin.template:
+    src: import_keys.sh.j2
+    dest: "{{ tmp_dir }}/import_keys.sh"
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Run import keys script
+  ansible.builtin.shell: "{{ tmp_dir }}/import_keys.sh"
+  changed_when: import_keys
+  notify:
+    - Restart service

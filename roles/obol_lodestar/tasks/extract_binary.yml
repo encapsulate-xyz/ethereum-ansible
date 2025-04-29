@@ -1,0 +1,40 @@
+---
+- name: Set a temporary variable
+  ansible.builtin.set_fact:
+    lodestar_path: "{{ obol_lodestar_default_binary_name }}-{{ obol.lodestar.version }}"
+
+- name: Create tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Unarchive the binary
+  vars:
+    suffix_url: "{{ lodestar_path }}-{{ ansible_system | lower }}-{{ system_architecture }}.tar.gz"
+  ansible.builtin.unarchive:
+    src: "{{ obol.lodestar.source_url }}/{{ obol.lodestar.version }}/{{ suffix_url }}"
+    dest: "{{ tmp_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy binary file
+  ansible.builtin.copy:
+    src: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_lodestar_default_binary_name }}"
+    dest: "{{ obol_lodestar_bin_dir }}/{{ service_identifier }}"
+    remote_src: true
+    owner: root
+    group: root
+    force: true
+    mode: "0755"
+  notify:
+    - Restart service
+
+- name: Clear tmp directory
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/{{ service_identifier }}"
+    state: absent

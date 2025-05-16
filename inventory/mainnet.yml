@@ -23,13 +23,10 @@ all:
           type: execution
           client: geth
 
-        arid.validator.ethereum.mainnet.encapsulate.xyz:
+        lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
 
-        manta.validator.ethereum.mainnet.encapsulate.xyz:
-          type: mev_boost
-
-        zephyr.validator.ethereum.mainnet.encapsulate.xyz:
+        prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
           type: mev_boost
 
     ssv:

@@ -17,6 +17,7 @@ ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --quic-port {{ ethereum.lighthouse.ports.quic }} \
   --http-port {{ ethereum.lighthouse.ports.http }} \
   --target-peers 100 \
+  --metrics-address 0.0.0.0 \
   --metrics-port {{ ethereum.lighthouse.ports.metrics }} \
   --execution-endpoint http://127.0.0.1:{{ ethereum.nethermind.ports.engine }} \
   --execution-jwt {{ lighthouse_jwt_secret_path }} \

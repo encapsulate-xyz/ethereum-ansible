@@ -21,7 +21,7 @@ ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --metrics-port {{ ethereum.lighthouse.ports.metrics }} \
   --execution-endpoint http://127.0.0.1:{{ ethereum.nethermind.ports.engine }} \
   --execution-jwt {{ lighthouse_jwt_secret_path }} \
-  --builder http://127.0.0.1:{{ ethereum.mev_boost.ports.listen_port }}
+  --builder http://127.0.0.1:{{ ethereum.mevboost.ports.listen_port }}
 Restart=always
 RestartSec=4
 LimitNOFILE=65536

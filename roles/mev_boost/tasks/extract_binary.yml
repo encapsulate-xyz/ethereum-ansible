@@ -1,7 +1,7 @@
 ---
 - name: Set a temporary variable
   ansible.builtin.set_fact:
-    mev_boost_path: "{{ mev_boost_default_binary_name }}_{{ ethereum.mev_boost.version }}_{{ ansible_system | lower }}_{{ system_architecture }}"
+    mev_boost_path: "{{ mev_boost_default_binary_name }}_{{ ethereum.mevboost.version }}_{{ ansible_system | lower }}_{{ system_architecture }}"
 
 - name: Create tmp directory
   ansible.builtin.file:
@@ -15,7 +15,7 @@
   vars:
     suffix_url: "{{ mev_boost_path }}.tar.gz"
   ansible.builtin.unarchive:
-    src: "{{ ethereum.mev_boost.source_url }}/v{{ ethereum.mev_boost.version }}/{{ suffix_url }}"
+    src: "{{ ethereum.mevboost.source_url }}/v{{ ethereum.mevboost.version }}/{{ suffix_url }}"
     dest: "{{ tmp_dir }}/{{ service_identifier }}"
     remote_src: true
     owner: root

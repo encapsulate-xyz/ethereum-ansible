@@ -24,10 +24,12 @@ all:
           client: geth
 
         lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:
-          type: mev_boost
+          client: lighthouse
+          type: mevboost
 
         prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
-          type: mev_boost
+          client: prysm
+          type: mevboost
 
     ssv:
       hosts:

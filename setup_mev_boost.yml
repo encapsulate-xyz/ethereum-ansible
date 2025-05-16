@@ -4,7 +4,7 @@
   become: true
   gather_facts: true
   vars:
-    allowed_node_types: [mev_boost]
+    allowed_node_types: [mevboost]
   vars_files:
     - group_vars/all.yml
     - group_vars/vault.yml

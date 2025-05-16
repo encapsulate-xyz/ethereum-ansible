@@ -1,19 +1,13 @@
 ---
 mev_boost_ufw_rules:
-  - port: "{{ ethereum.mev_boost.ports.listen_port }}"
+  - port: "{{ ethereum.mevboost.ports.listen_port }}"
     proto: tcp
     rule: allow
-    from: arid.validator.ethereum.mainnet.encapsulate.xyz
-    comment: mev_boost_listen_port
+    from: lighthouse.consensus.ethereum.mainnet.encapsulate.xyz
+    comment: mevboost_listen_port
 
-  - port: "{{ ethereum.mev_boost.ports.listen_port }}"
+  - port: "{{ ethereum.mevboost.ports.listen_port }}"
     proto: tcp
     rule: allow
-    from: manta.validator.ethereum.mainnet.encapsulate.xyz
-    comment: mev_boost_listen_port
-
-  - port: "{{ ethereum.mev_boost.ports.listen_port }}"
-    proto: tcp
-    rule: allow
-    from: zypher.validator.ethereum.mainnet.encapsulate.xyz
-    comment: mev_boost_listen_port
+    from: prysm.consensus.ethereum.mainnet.encapsulate.xyz
+    comment: mevboost_listen_port

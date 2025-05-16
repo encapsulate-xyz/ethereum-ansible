@@ -9,7 +9,7 @@ ethereum:
     version: v7.0.0
   prysm:
     version: v6.0.0
-  mev_boost:
+  mevboost:
     version: 1.9
 
 ssv:

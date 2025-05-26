@@ -6,8 +6,8 @@ mev_boost_ufw_rules:
     from: lighthouse.consensus.ethereum.mainnet.encapsulate.xyz
     comment: mevboost_listen_port
 
-  - port: "{{ ethereum.mevboost.ports.listen_port }}"
-    proto: tcp
-    rule: allow
-    from: prysm.consensus.ethereum.mainnet.encapsulate.xyz
-    comment: mevboost_listen_port
+  # - port: "{{ ethereum.mevboost.ports.listen_port }}"
+  #   proto: tcp
+  #   rule: allow
+  #   from: prysm.consensus.ethereum.mainnet.encapsulate.xyz
+  #   comment: mevboost_listen_port

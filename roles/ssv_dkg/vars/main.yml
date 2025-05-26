@@ -3,7 +3,7 @@ ssv_dkg_config_file_name: config.yml
 
 ssv_dkg_default_binary_name: ssv-dkg
 
-ssv_dkg_private_key_file_name: private_key.json
+ssv_dkg_private_key_file_name: encrypted_private_key.json
 ssv_dkg_password_file_name: password
 
 # Certs

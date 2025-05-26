@@ -17,3 +17,15 @@ nethermind_ufw_rules:
     rule: allow
     from: "{{ monitor_server_dns }}"
     comment: nethermind_metrics_port
+
+  - port: "{{ ethereum.nethermind.ports.json_rpc }}"
+    proto: tcp
+    rule: allow
+    from: "orchestrator.gravity.mainnet.encapsulate.xyz"
+    comment: nethermind_json_rpc_port
+
+  - port: "{{ ethereum.nethermind.ports.json_rpc }}"
+    proto: tcp
+    rule: allow
+    from: "manta.validator.ethereum.mainnet.encapsulate.xyz"
+    comment: nethermind_json_rpc_port

@@ -15,6 +15,8 @@ ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --checkpoint-sync-url=https://beaconstate.info \
   --port {{ ethereum.lighthouse.ports.p2p }} \
   --quic-port {{ ethereum.lighthouse.ports.quic }} \
+  --http \
+  --http-address 0.0.0.0 \
   --http-port {{ ethereum.lighthouse.ports.http }} \
   --target-peers 100 \
   --metrics-address 0.0.0.0 \

@@ -27,5 +27,5 @@ nethermind_ufw_rules:
   - port: "{{ ethereum.nethermind.ports.json_rpc }}"
     proto: tcp
     rule: allow
-    from: "manta.validator.ethereum.mainnet.encapsulate.xyz"
+    from: "manta.validator.ssv.mainnet.encapsulate.xyz"
     comment: nethermind_json_rpc_port

@@ -35,22 +35,22 @@ all:
       hosts:
 
         arid_ssv_node_client:
-          ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: arid.validator.ssv.mainnet.encapsulate.xyz
           type: node
           cluster: arid
 
         arid_ssv_dkg_client:
-          ansible_host: arid.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: arid.validator.ssv.mainnet.encapsulate.xyz
           type: dkg
           cluster: arid
 
         manta_ssv_node_client:
-          ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: manta.validator.ssv.mainnet.encapsulate.xyz
           type: node
           cluster: manta
 
         manta_ssv_dkg_client:
-          ansible_host: manta.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: manta.validator.ssv.mainnet.encapsulate.xyz
           type: dkg
           cluster: manta
 
@@ -58,23 +58,23 @@ all:
       hosts:
 
         zephyr_obol_charon_client:
-          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: zephyr.validator.obol.mainnet.encapsulate.xyz
           type: charon
           cluster: zephyr
 
         zephyr_obol_ejector_client:
-          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: zephyr.validator.obol.mainnet.encapsulate.xyz
           type: ejector
           cluster: zephyr
           obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
 
         zephyr_obol_dv_exit_client:
-          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: zephyr.validator.obol.mainnet.encapsulate.xyz
           type: dv_exit
           cluster: zephyr
           charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
 
         zephyr_obol_lodestar_client:
-          ansible_host: zephyr.validator.ethereum.mainnet.encapsulate.xyz
+          ansible_host: zephyr.validator.obol.mainnet.encapsulate.xyz
           type: lodestar
           cluster: zephyr

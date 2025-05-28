@@ -27,5 +27,5 @@ lighthouse_ufw_rules:
   - port: "{{ ethereum.lighthouse.ports.http }}"
     proto: tcp
     rule: allow
-    from: "manta.validator.ssv.mainnet.encapsulate.xyz"
+    from: "manta.node.ssv.mainnet.encapsulate.xyz"
     comment: lighthouse_http_port

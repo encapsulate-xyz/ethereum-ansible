@@ -26,11 +26,11 @@ ssv:
 
 eth2:
   # HTTP URL of the Beacon node to connect to.
-  BeaconNodeAddr: {{ vault.mainnet.ssv.consensus_client_url }}
+  BeaconNodeAddr: {{ vault.mainnet.ssv.manta.consensus_client_url }}
 
 eth1:
   # WebSocket URL of the Eth1 node to connect to.
-  ETH1Addr: {{ vault.mainnet.ssv.execution_client_url }}
+  ETH1Addr: {{ vault.mainnet.ssv.manta.execution_client_url }}
 
 p2p:
   # Optionally provide the external IP address of the node, if it cannot be automatically determined.

@@ -9,11 +9,14 @@ WorkingDirectory={{ prysm_home_dir }}
 ExecStart={{ prysm_bin_dir }}/{{ service_identifier }} \
   --mainnet \
   --datadir={{ prysm_data_dir }} \
-  --grpc-gateway-port {{ ethereum.prysm.ports.grpc }} \
+  --http-host 0.0.0.0 \
+  --http-port {{ ethereum.prysm.ports.http }} \
+  --rpc-port {{ ethereum.prysm.ports.rpc }} \
   --p2p-tcp-port {{ ethereum.prysm.ports.p2p_tcp }} \
   --p2p-udp-port {{ ethereum.prysm.ports.p2p_udp }} \
   --p2p-quic-port {{ ethereum.prysm.ports.quic }} \
   --p2p-max-peers 80 \
+  --monitoring-host 0.0.0.0 \
   --monitoring-port {{ ethereum.prysm.ports.metrics }}  \
   --checkpoint-sync-url=https://beaconstate.info \
   --execution-endpoint=http://localhost:{{ ethereum.geth.ports.auth_rpc }} \

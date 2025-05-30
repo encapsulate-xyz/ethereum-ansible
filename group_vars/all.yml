@@ -51,11 +51,12 @@ ethereum:
   prysm:
     source_url: https://github.com/prysmaticlabs/prysm/releases/download
     ports:
-      grpc: 5052
+      http: 5052
       p2p_tcp: 13000
       p2p_udp: 12000
       metrics: 8008
       quic: 13000
+      rpc: 4000
   mevboost:
     source_url: https://github.com/flashbots/mev-boost/releases/download
     ports:

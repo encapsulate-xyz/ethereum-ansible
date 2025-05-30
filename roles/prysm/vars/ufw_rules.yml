@@ -12,6 +12,12 @@ prysm_ufw_rules:
     from: any
     comment: prysm_p2p_udp_port
 
+  - port: "{{ ethereum.prysm.ports.quic }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: prysm_quic_port
+
   - port: "{{ ethereum.prysm.ports.metrics }}"
     proto: tcp
     rule: allow

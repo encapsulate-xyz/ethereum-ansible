@@ -38,12 +38,28 @@ This playbook relies on HashiCorp Vault to securely retrieve sensitive files, su
 **Note on Secrets Management**
 
 The playbook dynamically retrieves private keys and environment secrets for Mina from HashiCorp Vault. The keys and secrets follow a structured path format:
-`<environment>/<project>/<organization>/<type>/<file_name>`
+`<environment>/<project>/<organization>/{{ cluster }}/<type>/<file_name>`
 
 This structure ensures easy organization and secure retrieval of secrets.
 
 For obol setup we need a folder structure to fetch all the validator keys:
-`<environment>/<project>/<organization>/<type>/<folder_name>`
+`<environment>/<project>/<organization>/{{ cluster }}/<type>/<folder_name>`
+
+## To set up the services, you need to upload specific key files with the following names:
+
+1. For ssv-dkg service, upload:
+- encrypted_private_key.json
+- password
+- tls.key
+
+2. For ssv-node service, upload:
+- encrypted_private_key.json
+- password
+
+3. For obol-charon service, upload:
+- cluster-lock.json
+- charon-enr-private-key
+- validator_keys (directory containing all validator key files)
 
 ## Setup
 

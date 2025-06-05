@@ -6,11 +6,10 @@
     version: "{{ obol.charon.version }}"
     force: true
 
-- name: Build the obol charon binary go build
-  ansible.builtin.command: go build -trimpath -ldflags="-buildid= -s -w -X github.com/obolnetwork/charon/app/version.version={{ obol.charon.version }}"
-  args:
-    chdir: "{{ tmp_dir }}/{{ service_identifier }}"
-    creates: "{{ tmp_dir }}/{{ service_identifier }}/{{ obol_charon_default_binary_name }}"
+- name: Build the obol charon
+  community.general.make:
+    chdir: "{{ tmp_dir }}/{{ project }}"
+    target: charon
   environment:
     PATH: "{{ go.root }}/bin:{{ ansible_env.PATH }}"
     GOROOT: "{{ go.root }}"

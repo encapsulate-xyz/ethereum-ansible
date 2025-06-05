@@ -19,6 +19,7 @@
 - name: Build ejector binary
   ansible.builtin.shell: |
     source {{ nvm.path }}/nvm.sh
+    nvm use {{ obol.ejector.node.version }}
     npm install yarn
     yarn install
     yarn build
@@ -27,4 +28,5 @@
     executable: /bin/bash
   environment:
     PATH: "{{ nvm.path }}/versions/node/{{ obol.ejector.node.version }}/bin:{{ ansible_env.PATH }}"
+    NODE_PATH: "{{ nvm.path }}/versions/node/{{ obol.ejector.node.version }}/lib/node_modules"
   changed_when: false

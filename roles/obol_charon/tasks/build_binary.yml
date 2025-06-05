@@ -8,7 +8,7 @@
 
 - name: Build the obol charon
   community.general.make:
-    chdir: "{{ tmp_dir }}/{{ project }}"
+    chdir: "{{ tmp_dir }}/{{ service_identifier }}"
     target: charon
   environment:
     PATH: "{{ go.root }}/bin:{{ ansible_env.PATH }}"

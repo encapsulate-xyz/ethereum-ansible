@@ -20,7 +20,7 @@
   ansible.builtin.shell: |
     source {{ nvm.path }}/nvm.sh
     nvm use {{ obol.ejector.node.version }}
-    npm install yarn
+    npm install -g yarn
     yarn install
     yarn build
   args:

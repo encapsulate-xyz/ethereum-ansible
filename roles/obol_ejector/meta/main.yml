@@ -4,3 +4,5 @@ dependencies:
     nvm_version: "{{ nvm.version }}"
     nodejs_version: "{{ obol.ejector.node.version }}"
     nvm_dir: "{{ nvm.path }}"
+    nvm_commands:
+      - npm install -g yarn

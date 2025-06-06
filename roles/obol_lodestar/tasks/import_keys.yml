@@ -12,3 +12,18 @@
   changed_when: import_keys
   notify:
     - Restart service
+
+- name: Delete import keys script
+  ansible.builtin.file:
+    path: "{{ tmp_dir }}/import_keys.sh"
+    state: absent
+
+- name: Set ownership for secret and key directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ service_identifier }}"
+    group: "{{ service_identifier }}"
+    recurse: true
+  loop: 
+    - "{{ obol_lodestar_key_dir }}"
+    - "{{ obol_lodestar_secret_dir }}"

@@ -14,7 +14,9 @@
     directories: "{{ obol_charon_directories }}"
     log_file_path: "{{ obol_charon_log_file_path }}"
 
-# Obol-dv-exit writes data at the start of the service to this directory
+# obol-dv-exit needs write access to LIDODVEXIT_CHARON_RUNTIME_DIR which is set obol_charon_key_dir in inventory file
+# Although it should only need read access it tries to create a test file in that directory, thus mode 775 is needed
+# Fatal error: run error: can't access charon runtime directory: directory access: open /opt/obol-charon-zephyr/key/.test-file: permission denied
 - name: Create key directory
   ansible.builtin.file:
     path: "{{ obol_charon_key_dir }}"

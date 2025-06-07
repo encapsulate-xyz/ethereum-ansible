@@ -12,7 +12,6 @@ obol_charon_directories:
   - "{{ obol_charon_home_dir }}"
   - "{{ obol_charon_bin_dir }}"
   - "{{ obol_charon_env_dir }}"
-  - "{{ obol_charon_key_dir }}"
   - "{{ obol_charon_validator_keys_dir }}"
   - "{{ obol_charon_log_dir }}"
 

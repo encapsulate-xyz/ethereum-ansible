@@ -10,7 +10,7 @@ for f in /opt/obol-charon-{{ cluster }}/key/validator_keys/keystore-*.json; do
     echo "Importing key ${f}"
 
     # Extract pubkey from keystore file
-    PUBKEY="0x$(grep '"pubkey"' "$f" | awk -F'"' '{print $4}')"
+    PUBKEY="0x$(jq -r '.pubkey' "$f")"
     echo "Extracted public key: ${PUBKEY}"
 
     PUBKEY_DIR="${KEYSTORES_DIR}/${PUBKEY}"

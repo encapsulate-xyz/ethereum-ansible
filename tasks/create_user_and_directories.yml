@@ -1,7 +1,7 @@
 ---
-- name: Create project group
+- name: Create service group
   ansible.builtin.group:
-    name: "{{ project }}"
+    name: "{{ service_group }}"
     state: present
 
 - name: Create system user with home and nologin
@@ -9,7 +9,7 @@
     name: "{{ service_identifier }}"
     system: true
     home: "{{ home }}"
-    groups: "{{ project }}"
+    groups: "{{ service_group }}"
     shell: /usr/sbin/nologin
     createhome: true
     state: present
@@ -19,7 +19,7 @@
     path: "{{ item }}"
     state: directory
     owner: "{{ service_identifier }}"
-    group: "{{ service_identifier }}"
+    group: "{{ service_group }}"
     mode: "0755"
   loop: "{{ directories }}"
 

@@ -6,9 +6,10 @@
     cluster_suffix: "{{ '-' + cluster if cluster is defined else '' }}"
     type_suffix: "{{ '' if type in default_node_types else '-' + (type | replace('_', '-')) }}"
 
-- name: Set service identifier in facts
+- name: Set service identifier and service group in facts
   ansible.builtin.set_fact:
     service_identifier: "{{ group_names[0] }}{{ type_suffix }}{{ client_suffix }}{{ cluster_suffix }}"
+    service_group: "{{ group_names[0] }}{{ cluster_suffix }}"
 
 - name: Set architecture variable based on system architecture
   ansible.builtin.set_fact:
@@ -25,6 +26,7 @@
       - "Client: {{ (client) if client is defined else project }}"
       - "Version: {{ (vars[project][client].version) if client is defined else vars[project][type].version }}"
       - "Username: {{ service_identifier }}"
+      - "Group: {{ service_group }}"
       - "Service Name: {{ service_identifier }}"
       - "Operating System: {{ ansible_system | lower }}"
       - "System Architecture: {{ system_architecture }}"

@@ -1,0 +1,25 @@
+---
+# maintains versions and can overwrite all.yml
+ethereum:
+  nethermind:
+    version: 1.31.11-2be1890e
+  lighthouse:
+    version: v7.0.1
+  mevboost:
+    version: 1.9
+
+obol:
+  charon:
+    version: v1.4.3
+    go:
+      version: 1.24.2
+  ejector:
+    version: 1.7.0
+    node:
+      version: v16.20.2
+  dv_exit:
+    version: v0.3.0
+    go:
+      version: 1.23.5
+  lodestar:
+    version: v1.29.0

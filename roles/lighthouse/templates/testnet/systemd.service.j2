@@ -1,0 +1,35 @@
+[Unit]
+Description= LightHouse
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ lighthouse_home_dir }}
+ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
+  --datadir {{ lighthouse_data_dir }} \
+  --network hoodi \
+  --staking \
+  --validator-monitor-auto \
+  --metrics \
+  --checkpoint-sync-url=https://checkpoint-sync.hoodi.ethpandaops.io \
+  --port {{ ethereum.lighthouse.ports.p2p }} \
+  --quic-port {{ ethereum.lighthouse.ports.quic }} \
+  --http \
+  --http-address 0.0.0.0 \
+  --http-port {{ ethereum.lighthouse.ports.http }} \
+  --target-peers 100 \
+  --metrics-address 0.0.0.0 \
+  --metrics-port {{ ethereum.lighthouse.ports.metrics }} \
+  --execution-endpoint http://127.0.0.1:{{ ethereum.nethermind.ports.engine }} \
+  --execution-jwt {{ lighthouse_jwt_secret_path }} \
+  --builder http://127.0.0.1:{{ ethereum.mevboost.ports.listen_port }}
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ lighthouse_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+[Unit]
+Description= Obol Ejector Service
+
+[Service]
+Type=simple
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ obol_ejector_bin_dir }}
+EnvironmentFile={{ obol_ejector_environment_general_file_path }}
+ExecStart=/bin/bash -c 'source {{ nvm.path }}/nvm.sh && yarn start'
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ obol_ejector_log_file_path }}
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

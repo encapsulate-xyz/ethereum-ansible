@@ -1,0 +1,41 @@
+---
+# maintains testnet inventory grouped by project names
+all:
+  vars:
+    env: testnet
+  children:
+    ethereum:
+      hosts:
+
+        lighthouse.consensus.ethereum.testnet.encapsulate.xyz:
+          type: consensus
+          client: lighthouse
+
+        nethermind.execution.ethereum.testnet.encapsulate.xyz:
+          type: execution
+          client: nethermind
+
+        lighthouse.mevboost.ethereum.testnet.encapsulate.xyz:
+          client: lighthouse
+          type: mevboost
+
+    obol:
+      hosts:
+
+        primev.charon.obol.testnet.encapsulate.xyz:
+          type: charon
+          cluster: primev
+
+        primev.ejector.obol.testnet.encapsulate.xyz:
+          type: ejector
+          cluster: primev
+          obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
+
+        primev.dvexit.obol.testnet.encapsulate.xyz:
+          type: dv_exit
+          cluster: primev
+          charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
+
+        primev.lodestar.obol.testnet.encapsulate.xyz:
+          type: lodestar
+          cluster: primev

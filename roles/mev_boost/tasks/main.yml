@@ -1,7 +1,7 @@
 ---
 - name: Set Relay list
   ansible.builtin.set_fact:
-    relay_list: "{{ lookup('file', 'relays.txt').splitlines() }}"
+    relay_list: "{{ lookup('file', '{{ env }}/relays.txt').splitlines() }}"
 
 - name: Include user creation task
   ansible.builtin.include_tasks: tasks/create_user_and_directories.yml

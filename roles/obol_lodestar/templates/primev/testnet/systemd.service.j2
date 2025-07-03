@@ -18,7 +18,8 @@ ExecStart={{ obol_lodestar_bin_dir }}/{{ service_identifier }} validator \
     --builder="true" \
     --builder.selection="builderalways" \
     --distributed \
-    --logFile none
+    --logFile none \
+    --suggestedFeeRecipient="0x9b108015fe433F173696Af3Aa0CF7CDb3E104258"
 Restart=always
 RestartSec=4
 LimitNOFILE=65536

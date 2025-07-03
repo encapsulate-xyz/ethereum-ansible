@@ -12,6 +12,7 @@ all:
           client: lighthouse
 
         nethermind.execution.ethereum.testnet.encapsulate.xyz:
+        95.217.4.193:
           type: execution
           client: nethermind
 
@@ -25,16 +26,6 @@ all:
         primev.charon.obol.testnet.encapsulate.xyz:
           type: charon
           cluster: primev
-
-        primev.ejector.obol.testnet.encapsulate.xyz:
-          type: ejector
-          cluster: primev
-          obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
-
-        primev.dvexit.obol.testnet.encapsulate.xyz:
-          type: dv_exit
-          cluster: primev
-          charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
 
         primev.lodestar.obol.testnet.encapsulate.xyz:
           type: lodestar

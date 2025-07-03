@@ -18,3 +18,4 @@ obol:
       version: 1.24.2
   lodestar:
     version: v1.31.0
+    suggested_fee_recipient: "0x9b108015fe433F173696Af3Aa0CF7CDb3E104258"

@@ -29,3 +29,15 @@ lighthouse_ufw_rules:
     rule: allow
     from: "manta.node.ssv.mainnet.encapsulate.xyz"
     comment: lighthouse_http_port
+
+  - port: "{{ ethereum.lighthouse.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "arid.node.ssv.mainnet.encapsulate.xyz"
+    comment: lighthouse_http_port
+
+  - port: "{{ ethereum.lighthouse.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "zephyr.charon.obol.mainnet.encapsulate.xyz"
+    comment: lighthouse_http_port

@@ -41,6 +41,7 @@ ethereum:
       network_discovery: 30303
       http: 8545
       metrics: 6060
+      websocket: 8546
   lighthouse:
     source_url: https://github.com/sigp/lighthouse/releases/download
     ports:

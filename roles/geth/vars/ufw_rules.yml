@@ -18,17 +18,17 @@ geth_ufw_rules:
     from: "{{ monitor_server_dns }}"
     comment: geth_metrics_port
 
-  - port: "{{ ethereum.geth.ports.http }}"
+  - port: "{{ ethereum.geth.ports.websocket }}"
     proto: tcp
     rule: allow
     from: "manta.node.ssv.mainnet.encapsulate.xyz"
-    comment: geth_http_port
+    comment: geth_websocket_port
 
-  - port: "{{ ethereum.geth.ports.http }}"
+  - port: "{{ ethereum.geth.ports.websocket }}"
     proto: tcp
     rule: allow
     from: "arid.node.ssv.mainnet.encapsulate.xyz"
-    comment: geth_http_port
+    comment: geth_websocket_port
 
   - port: "{{ ethereum.geth.ports.http }}"
     proto: tcp

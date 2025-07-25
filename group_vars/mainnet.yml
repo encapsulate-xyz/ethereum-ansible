@@ -4,11 +4,11 @@ ethereum:
   nethermind:
     version: 1.32.2-d3e7eb98
   geth:
-    version: 1.15.10-2bf8a789
+    version: 1.16.0-57f8971b
   lighthouse:
     version: v7.1.0
   prysm:
-    version: v6.0.0
+    version: v6.0.4
   mevboost:
     version: 1.9
 

@@ -19,7 +19,7 @@
 
 - name: Copy ssv dkg config
   ansible.builtin.template:
-    src: "{{ cluster }}/{{ env }}/config.yml.j2"
+    src: "{{ env }}/{{ cluster }}/config.yml.j2"
     dest: "{{ ssv_dkg_config_file_path }}"
     owner: "{{ service_identifier }}"
     group: "{{ service_identifier }}"
@@ -29,7 +29,7 @@
 
 - name: Copy tls cert
   ansible.builtin.copy:
-    src: "{{ cluster }}/{{ env }}/tls.crt"
+    src: "{{ env }}/{{ cluster }}/tls.crt"
     dest: "{{ ssv_dkg_tls_cert_path }}"
     owner: "{{ service_identifier }}"
     group: "{{ service_identifier }}"
@@ -63,7 +63,7 @@
 
 - name: Copy ssv_dkg client systemd service file
   ansible.builtin.template:
-    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    src: "{{ env }}/{{ cluster }}/systemd.service.j2"
     dest: /etc/systemd/system/{{ service_identifier }}.service
     owner: root
     group: root

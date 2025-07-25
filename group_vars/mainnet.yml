@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 ethereum:
   nethermind:
-    version: 1.31.9-98c5dca4
+    version: 1.32.2-d3e7eb98
   geth:
     version: 1.15.10-2bf8a789
   lighthouse:
@@ -24,7 +24,7 @@ ssv:
 
 obol:
   charon:
-    version: v1.4.3
+    version: v1.5.1
     go:
       version: 1.24.2
   ejector:
@@ -36,4 +36,4 @@ obol:
     go:
       version: 1.23.5
   lodestar:
-    version: v1.29.0
+    version: v1.31.0

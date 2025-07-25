@@ -23,7 +23,7 @@
 
 - name: Copy obol lodestar client systemd service file
   ansible.builtin.template:
-    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    src: "{{ env }}/{{ cluster }}/systemd.service.j2"
     dest: /etc/systemd/system/{{ service_identifier }}.service
     owner: root
     group: root

@@ -54,7 +54,7 @@
 
 - name: Copy general environment file
   ansible.builtin.template:
-    src: "{{ cluster }}/{{ env }}/general.env.j2"
+    src: "{{ env }}/{{ cluster }}/general.env.j2"
     dest: "{{ obol_charon_environment_general_file_path }}"
     owner: root
     group: root
@@ -64,7 +64,7 @@
 
 - name: Copy obol charon client systemd service file
   ansible.builtin.template:
-    src: "{{ cluster }}/{{ env }}/systemd.service.j2"
+    src: "{{ env }}/{{ cluster }}/systemd.service.j2"
     dest: /etc/systemd/system/{{ service_identifier }}.service
     owner: root
     group: root

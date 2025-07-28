@@ -8,11 +8,11 @@ Group={{ service_identifier }}
 WorkingDirectory={{ lighthouse_home_dir }}
 ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --datadir {{ lighthouse_data_dir }} \
-  --network hoodi \
+  --network {{ network }} \
   --staking \
   --validator-monitor-auto \
   --metrics \
-  --checkpoint-sync-url=https://checkpoint-sync.hoodi.ethpandaops.io \
+  --checkpoint-sync-url={{ checkpoint_sync_url }} \
   --port {{ ethereum.lighthouse.ports.p2p }} \
   --quic-port {{ ethereum.lighthouse.ports.quic }} \
   --http \

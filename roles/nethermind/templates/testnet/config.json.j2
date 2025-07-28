@@ -1,7 +1,7 @@
 {
   "Init": {
-    "ChainSpecPath": "chainspec/hoodi.json",
-    "GenesisHash": "0xbbe312868b376a3001692a646dd2d7d1e4406380dfd86b98aa8a34d1557c971b",
+    "ChainSpecPath": "chainspec/{{ network }}.json",
+    "GenesisHash": "{{ genesis_hash }}",
     "LogDirectory": "{{ nethermind_log_dir }}",
     "LogFileName": "{{ service_identifier }}.log"
   },

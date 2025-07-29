@@ -6,7 +6,8 @@ ethereum:
   lighthouse:
     version: v7.0.1
     ports:
-      quic: 9002
+      p2p: 8001
+      quic: 8002
       metrics: 8009
   mevboost:
     version: 1.9

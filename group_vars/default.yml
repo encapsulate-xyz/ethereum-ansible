@@ -1,3 +1,6 @@
 ---
 nvm:
   version: 0.40.1
+
+promtail:
+  version: 3.4.5

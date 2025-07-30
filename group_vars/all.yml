@@ -93,3 +93,11 @@ obol:
     source_url: https://github.com/ChainSafe/lodestar/releases/download
     ports:
       metrics: 5064
+
+promtail:
+  service_identifier_suffix: promtail
+  source_url: https://github.com/grafana/loki/releases/download
+  file_extension: zip
+  ports:
+    http_listen_port: 9086
+    grpc_listen_port: 9087

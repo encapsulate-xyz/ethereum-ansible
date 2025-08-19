@@ -29,7 +29,8 @@ all:
           network: sepolia
           checkpoint_sync_url: "https://checkpoint-sync.sepolia.ethpandaops.io"
         
-        157.90.3.253:
+        lighthouse_sepolia:
+          ansible_host: 157.90.3.253
           type: consensus
           client: lighthouse
           network: sepolia
@@ -41,7 +42,8 @@ all:
           network: sepolia
           genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"
         
-        157.90.3.253:
+        nethermind_sepolia:
+          ansible_host: 157.90.3.253
           type: execution
           client: nethermind
           network: sepolia
@@ -51,7 +53,8 @@ all:
           client: lighthouse
           type: mevboost
 
-        157.90.3.253:
+        mevboost_sepolia:
+          ansible_host: 157.90.3.253
           client: lighthouse
           type: mevboost
 

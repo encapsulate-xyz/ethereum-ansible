@@ -24,23 +24,21 @@
     "P2PPort": "{{ ethereum.nethermind.ports.p2p }}",
     "MaxActivePeers": 50
   },
+  "Blocks": {
+    "TargetBlockGasLimit": 60000000
+  },
   "Metrics": {
     "Enabled": true,
     "ExposePort": "{{ ethereum.nethermind.ports.metrics }}"
   },
   "Pruning": {
-    "Mode": "Hybrid",
-    "FullPruningTrigger": "VolumeFreeSpace",
-    "FullPruningThresholdMb": 375810,
-    "FullPruningMemoryBudgetMb": 16384,
-    "FullPruningMaxDegreeOfParallelism": 2,
-    "FullPruningCompletionBehavior": "AlwaysShutdown"
+    "Mode": "None"
   },
   "Sync": {
     "FastSync": true,
     "SnapSync": true,
-    "AncientBodiesBarrier": 4367322,
-    "AncientReceiptsBarrier": 4367322,
-    "FastSyncCatchUpHeightDelta": "10000000000"
+    "UseGethLimitsInFastBlocks": true,
+    "AncientBodiesBarrier": 145040,
+    "AncientReceiptsBarrier": 145040
   }
 }

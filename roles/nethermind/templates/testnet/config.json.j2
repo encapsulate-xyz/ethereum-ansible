@@ -32,7 +32,11 @@
     "ExposePort": "{{ ethereum.nethermind.ports.metrics }}"
   },
   "Pruning": {
-    "Mode": "None"
+    "Mode": "Hybrid",
+    "FullPruningTrigger": "VolumeFreeSpace",
+    "FullPruningThresholdMb": 375810,
+    "FullPruningMemoryBudgetMb": 16384,
+    "FullPruningMaxDegreeOfParallelism": 2
   },
   "Sync": {
     "FastSync": true,

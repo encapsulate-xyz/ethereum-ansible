@@ -59,6 +59,8 @@ all:
         zephyr.charon.obol.mainnet.encapsulate.xyz:
           type: charon
           cluster: zephyr
+          cluster_name: "Zephyr Zorilla"
+          cluster_peer: "cloudy-game"
 
         zephyr.ejector.obol.mainnet.encapsulate.xyz:
           type: ejector

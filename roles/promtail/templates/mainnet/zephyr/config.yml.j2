@@ -1,0 +1,56 @@
+server:
+  http_listen_port: {{ promtail.ports.http_listen_port }}
+  grpc_listen_port: {{ promtail.ports.grpc_listen_port }}
+
+positions:
+  filename: {{ promtail_position_file_path }}
+
+clients:
+  - url: {{ vault.mainnet.obol.zephyr.external.loki_address }}
+
+scrape_configs:
+
+  - job_name: lido-charon
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          __path__: /opt/obol-charon-zephyr/log/obol-charon-zephyr.log
+          cluster_name: "{{ cluster_name }}"
+          cluster_peer: "{{ cluster_peer }}"
+
+  - job_name: lido-lodestar
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          __path__: /opt/obol-lodestar-zephyr/log/obol-lodestar-zephyr.log
+          cluster_name: "{{ cluster_name }}"
+          cluster_peer: "{{ cluster_peer }}"
+
+  - job_name: lido-lighthouse
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          __path__: /opt/ethereum-consensus-prysm/log/ethereum-consensus-prysm.log
+          cluster_name: "{{ cluster_name }}"
+          cluster_peer: "{{ cluster_peer }}"
+
+  - job_name: lido-geth
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          __path__: /opt/ethereum-execution-geth/log/ethereum-execution-geth.log
+          cluster_name: "{{ cluster_name }}"
+          cluster_peer: "{{ cluster_peer }}"
+
+  - job_name: lido-mev-boost
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          __path__: /opt/ethereum-mevboost-prysm/log/ethereum-mevboost-prysm.log
+          cluster_name: "{{ cluster_name }}"
+          cluster_peer: "{{ cluster_peer }}"

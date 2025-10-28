@@ -10,7 +10,7 @@ ExecStart={{ lighthouse_bin_dir }}/{{ service_identifier }} bn \
   --datadir {{ lighthouse_data_dir }} \
   --network {{ network }} \
   --staking \
-  --supernode \
+  --semi-supernode \
   --validator-monitor-auto \
   --metrics \
   --checkpoint-sync-url={{ checkpoint_sync_url }} \

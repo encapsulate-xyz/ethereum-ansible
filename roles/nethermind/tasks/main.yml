@@ -1,7 +1,7 @@
 ---
 - name: Include the ufw rules vars file
   ansible.builtin.include_vars:
-    file: vars/ufw_rules.yml
+    file: vars/ufw_rules/{{ network }}.yml
 
 - name: Apply UFW rules
   ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml

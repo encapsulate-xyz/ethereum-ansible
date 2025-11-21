@@ -21,9 +21,9 @@ ethereum:
 
 obol:
   charon:
-    version: v1.4.3
+    version: v1.7.1
     go:
-      version: 1.24.2
+      version: 1.25.4
   lodestar:
-    version: v1.31.0
+    version: v1.36.0
     suggested_fee_recipient: "0x9b108015fe433F173696Af3Aa0CF7CDb3E104258"

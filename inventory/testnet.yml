@@ -8,13 +8,13 @@ all:
       hosts:
 
         lighthouse.consensus.ethereum.hoodi.encapsulate.xyz:
-          type: consensus
+          type: cons
           client: lighthouse
           network: hoodi
           checkpoint_sync_url: "https://checkpoint-sync.hoodi.ethpandaops.io"
 
         nethermind.execution.ethereum.hoodi.encapsulate.xyz:
-          type: execution
+          type: exec
           client: nethermind
           network: hoodi
           genesis_hash: "0xbbe312868b376a3001692a646dd2d7d1e4406380dfd86b98aa8a34d1557c971b"
@@ -22,16 +22,16 @@ all:
         lighthouse.mevboost.ethereum.hoodi.encapsulate.xyz:
           client: lighthouse
           network: hoodi
-          type: mevboost
+          type: mev
         
         lighthouse.consensus.ethereum.sepolia.encapsulate.xyz:
-          type: consensus
+          type: cons
           client: lighthouse
           network: sepolia
           checkpoint_sync_url: "https://checkpoint-sync.sepolia.ethpandaops.io"
         
         nethermind.execution.ethereum.sepolia.encapsulate.xyz:
-          type: execution
+          type: exec
           client: nethermind
           network: sepolia
           genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"
@@ -39,7 +39,7 @@ all:
         lighthouse.mevboost.ethereum.sepolia.encapsulate.xyz:
           client: lighthouse
           network: sepolia
-          type: mevboost
+          type: mev
 
     obol:
       hosts:

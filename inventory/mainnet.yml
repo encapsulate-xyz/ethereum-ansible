@@ -23,12 +23,14 @@ all:
         nethermind.execution.ethereum.mainnet.encapsulate.xyz:
           type: execution
           client: nethermind
+          network: mainnet
           genesis_hash: "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
 
         nethermind_host:
           ansible_host: 65.109.158.204
           type: execution
           client: nethermind
+          network: mainnet
           genesis_hash: "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
 
         prysm.consensus.ethereum.mainnet.encapsulate.xyz:

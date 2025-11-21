@@ -1,0 +1,31 @@
+---
+nethermind_ufw_rules:
+  - port: "{{ ethereum.nethermind.ports.p2p }}"
+    proto: tcp
+    rule: allow
+    from: any
+    comment: nethermind_p2p_port
+
+  - port: "{{ ethereum.nethermind.ports.p2p }}"
+    proto: udp
+    rule: allow
+    from: any
+    comment: nethermind_p2p_port
+
+  - port: "{{ ethereum.nethermind.ports.metrics }}"
+    proto: tcp
+    rule: allow
+    from: "{{ monitor_server_dns }}"
+    comment: nethermind_metrics_port
+
+  - port: "{{ ethereum.nethermind.ports.json_rpc }}"
+    proto: tcp
+    rule: allow
+    from: "validator.aztec.testnet.encapsulate.xyz"
+    comment: nethermind_json_rpc_port
+
+  - port: "{{ ethereum.nethermind.ports.json_rpc }}"
+    proto: tcp
+    rule: allow
+    from: "bridge.sui.testnet.encapsulate.xyz"
+    comment: nethermind_json_rpc_port

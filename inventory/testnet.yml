@@ -21,6 +21,7 @@ all:
 
         lighthouse.mevboost.ethereum.hoodi.encapsulate.xyz:
           client: lighthouse
+          network: hoodi
           type: mevboost
         
         lighthouse.consensus.ethereum.sepolia.encapsulate.xyz:
@@ -37,6 +38,7 @@ all:
 
         lighthouse.mevboost.ethereum.sepolia.encapsulate.xyz:
           client: lighthouse
+          network: sepolia
           type: mevboost
 
         lighthouse_sepolia_host:

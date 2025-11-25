@@ -24,16 +24,16 @@ ssv:
 
 obol:
   charon:
-    version: v1.5.1
+    version: v1.7.1
     go:
-      version: 1.24.2
+      version: 1.25.4
   ejector:
-    version: 1.7.0
+    version: 1.9.0
     node:
       version: v16.20.2
   dv_exit:
-    version: v0.3.0
+    version: v0.4.0
     go:
-      version: 1.23.5
+      version: 1.25.0
   lodestar:
-    version: v1.31.0
+    version: v1.36.0

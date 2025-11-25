@@ -13,21 +13,7 @@ all:
           network: mainnet
           checkpoint_sync_url: "https://beaconstate.info"
 
-        lighthouse_host:
-          ansible_host: 65.109.158.204
-          type: cons
-          client: lighthouse
-          network: mainnet
-          checkpoint_sync_url: "https://beaconstate.info"
-
         nethermind.execution.ethereum.mainnet.encapsulate.xyz:
-          type: exec
-          client: nethermind
-          network: mainnet
-          genesis_hash: "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
-
-        nethermind_host:
-          ansible_host: 65.109.158.204
           type: exec
           client: nethermind
           network: mainnet
@@ -42,11 +28,6 @@ all:
           client: geth
 
         lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:
-          client: lighthouse
-          type: mev
-
-        lighthouse_mevboost_host:
-          ansible_host: 65.109.158.204
           client: lighthouse
           type: mev
 

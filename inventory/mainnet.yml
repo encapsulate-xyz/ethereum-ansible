@@ -46,16 +46,6 @@ all:
           type: dkg
           cluster: arid
 
-        ssv_arid:
-          ansible_host: 65.109.158.204
-          type: node
-          cluster: arid
-
-        dkg_arid:
-          ansible_host: 65.109.158.204
-          type: dkg
-          cluster: arid
-
         manta.node.ssv.mainnet.encapsulate.xyz:
           type: node
           cluster: manta

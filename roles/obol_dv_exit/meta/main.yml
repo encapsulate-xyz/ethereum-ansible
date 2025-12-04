@@ -8,4 +8,4 @@ dependencies:
       GO111MODULE: "{{ go.module111 }}" # Go module management
       GOOS: "{{ ansible_system | lower }}" # Target OS (linux)
       GOARCH: "{{ system_architecture }}" # Target architecture (amd64)
-      go_custom_mirror: https://storage.googleapis.com/golang
+      go_custom_mirror: https://go.dev/dl

@@ -22,6 +22,7 @@ ExecStart={{ prysm_bin_dir }}/{{ service_identifier }} \
   --execution-endpoint=http://localhost:{{ ethereum.geth.ports.auth_rpc }} \
   --jwt-secret={{ prysm_jwt_secret_path }} \
   --accept-terms-of-use=true \
+  --disable-last-epoch-targets \
   --http-mev-relay=http://127.0.0.1:{{ ethereum.mevboost.ports.listen_port }}
 Restart=always
 RestartSec=4

@@ -20,11 +20,11 @@ all:
           genesis_hash: "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
 
         prysm.consensus.ethereum.mainnet.encapsulate.xyz:
-          type: consensus
+          type: cons
           client: prysm
 
         geth.execution.ethereum.mainnet.encapsulate.xyz:
-          type: execution
+          type: exe
           client: geth
 
         lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:
@@ -33,7 +33,7 @@ all:
 
         prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
           client: prysm
-          type: mevboost
+          type: mev
 
     ssv:
       hosts:

@@ -21,18 +21,22 @@ all:
 
         prysm.consensus.ethereum.mainnet.encapsulate.xyz:
           type: cons
+          network: mainnet
           client: prysm
 
         geth.execution.ethereum.mainnet.encapsulate.xyz:
           type: exec
+          network: mainnet
           client: geth
 
         lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:
           client: lighthouse
+          network: mainnet
           type: mev
 
         prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
           client: prysm
+          network: mainnet
           type: mev
 
     ssv:

@@ -24,7 +24,7 @@ all:
           client: prysm
 
         geth.execution.ethereum.mainnet.encapsulate.xyz:
-          type: exe
+          type: exec
           client: geth
 
         lighthouse.mevboost.ethereum.mainnet.encapsulate.xyz:

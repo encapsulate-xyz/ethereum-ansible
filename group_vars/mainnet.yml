@@ -4,7 +4,7 @@ ethereum:
   nethermind:
     version: 1.35.8-c066aee2
   geth:
-    version: 1.16.7-b9f3a3d9
+    version: 1.16.8-abeb78c6
   lighthouse:
     version: v8.0.1
   prysm:

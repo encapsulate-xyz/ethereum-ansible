@@ -11,7 +11,7 @@
   vars:
     suffix_url: "{{ nethermind_default_binary_name }}-{{ ethereum.nethermind.version }}-{{ ansible_system | lower }}-x64.zip"
   ansible.builtin.unarchive:
-    src: "{{ ethereum.nethermind.source_url }}/{{ suffix_url }}"
+    src: "{{ ethereum.nethermind.source_url }}/{{ ethereum.nethermind.version.split('-')[0] }}/{{ suffix_url }}"
     dest: "{{ tmp_dir }}/{{ service_identifier }}"
     remote_src: true
     owner: root

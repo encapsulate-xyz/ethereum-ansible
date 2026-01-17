@@ -35,3 +35,9 @@ geth_ufw_rules:
     rule: allow
     from: "zephyr.charon.obol.mainnet.encapsulate.xyz"
     comment: geth_http_port
+
+  - port: "{{ ethereum.geth.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "ts.orchestrator.gravity.mainnet.encapsulate.xyz"
+    comment: geth_http_port

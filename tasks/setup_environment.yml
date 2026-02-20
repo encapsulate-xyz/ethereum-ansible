@@ -5,7 +5,7 @@
     client_suffix: "{{ '-' + client if client is defined else '' }}"
     cluster_suffix: "{{ '-' + cluster if cluster is defined else '' }}"
     type_suffix: "{{ '' if type in default_node_types else '-' + (type | replace('_', '-')) }}"
-    network_prefix: "{{ network + '-' }}"
+    network_prefix: "{{ network + '-' if network is defined and network else '' }}"
 
 - name: Set service identifier and service group in facts
   ansible.builtin.set_fact:

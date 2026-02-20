@@ -58,6 +58,14 @@ all:
           type: dkg
           cluster: manta
 
+        ts.manta.node.ssv.mainnet.encapsulate.xyz:
+          type: node
+          cluster: manta
+
+        ts.manta.dkg.ssv.mainnet.encapsulate.xyz:
+          type: dkg
+          cluster: manta
+
     obol:
       hosts:
 

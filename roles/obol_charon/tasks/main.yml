@@ -29,7 +29,7 @@
   ansible.builtin.include_tasks: build_binary.yml
 
 - name: Fetch secrets from HCP Vault and save to files
-  when: fetch_validator_keys | default(false) | bool
+  when: fetch_vault_keys | default(false) | bool
   block:
     - name: Fetch private key and save
       ansible.builtin.include_tasks: tasks/get_and_save_vault_secret.yml

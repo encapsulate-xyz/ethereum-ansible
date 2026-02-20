@@ -41,3 +41,9 @@ prysm_ufw_rules:
     rule: allow
     from: "zephyr.charon.obol.mainnet.encapsulate.xyz"
     comment: prysm_http_port
+
+  - port: "{{ ethereum.prysm.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "139.84.156.198"
+    comment: prysm_http_port

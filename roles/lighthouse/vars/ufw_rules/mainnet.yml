@@ -41,3 +41,9 @@ lighthouse_ufw_rules:
     rule: allow
     from: "zephyr.charon.obol.mainnet.encapsulate.xyz"
     comment: lighthouse_http_port
+
+  - port: "{{ ethereum.lighthouse.ports.http }}"
+    proto: tcp
+    rule: allow
+    from: "139.84.156.198"
+    comment: lighthouse_http_port

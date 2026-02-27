@@ -10,7 +10,7 @@ ethereum:
       json_rpc: 8525
       metrics: 6006
   lighthouse:
-    version: v8.0.1
+    version: v8.1.1
     ports:
       p2p: 8010
       quic: 8011

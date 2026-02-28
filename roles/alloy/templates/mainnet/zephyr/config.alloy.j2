@@ -1,0 +1,79 @@
+loki.source.file "lido_charon" {
+        targets = [{
+                __address__  = "localhost",
+                __path__     = "/opt/obol-charon-zephyr/log/obol-charon-zephyr.log",
+                job          = "charon",
+        }]
+        forward_to = [loki.write.default.receiver]
+
+        file_match {
+                enabled = true
+        }
+        legacy_positions_file = "{{ promtail_position_file_path }}"
+}
+
+loki.source.file "lido_lodestar" {
+        targets = [{
+                __address__  = "localhost",
+                __path__     = "/opt/obol-lodestar-zephyr/log/obol-lodestar-zephyr.log",
+                job          = "lodestar",
+        }]
+        forward_to = [loki.write.default.receiver]
+
+        file_match {
+                enabled = true
+        }
+        legacy_positions_file = "{{ promtail_position_file_path }}"
+}
+
+loki.source.file "lido_prysm" {
+        targets = [{
+                __address__  = "localhost",
+                __path__     = "/opt/mainnet-ethereum-cons-prysm/log/mainnet-ethereum-cons-prysm.log",
+                job          = "prysm",
+        }]
+        forward_to = [loki.write.default.receiver]
+
+        file_match {
+                enabled = true
+        }
+        legacy_positions_file = "{{ promtail_position_file_path }}"
+}
+
+loki.source.file "lido_geth" {
+        targets = [{
+                __address__  = "localhost",
+                __path__     = "/opt/mainnet-ethereum-exec-geth/log/mainnet-ethereum-exec-geth.log",
+                job          = "geth",
+        }]
+        forward_to = [loki.write.default.receiver]
+
+        file_match {
+                enabled = true
+        }
+        legacy_positions_file = "{{ promtail_position_file_path }}"
+}
+
+loki.source.file "lido_mev_boost" {
+        targets = [{
+                __address__  = "localhost",
+                __path__     = "/opt/mainnet-ethereum-mev-prysm/log/mainnet-ethereum-mev-prysm.log",
+                job          = "mev-boost",
+        }]
+        forward_to = [loki.write.default.receiver]
+
+        file_match {
+                enabled = true
+        }
+        legacy_positions_file = "{{ promtail_position_file_path }}"
+}
+
+loki.write "default" {
+        endpoint {
+                url = "https://495jznuq:oZFy20v0lfbCwhEP@loki.gcp.obol.tech/loki/api/v1/push"
+        }
+        external_labels = {
+                cluster_name = "{{ cluster_name }}",
+                cluster_peer = "{{ cluster_peer }}",
+        }
+}

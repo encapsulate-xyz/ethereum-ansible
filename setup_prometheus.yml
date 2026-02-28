@@ -1,12 +1,12 @@
 ---
-- name: Setup Promtail
+- name: Setup Prometheus
   hosts: all
   become: true
   gather_facts: true
   vars:
     node_service_identifier: "{{ group_names[0] }}"
     service_group: "{{ group_names[0] }}-{{ cluster }}"
-    system_architecture: "{{ architecture_map[ansible_architecture] | default(ansible_architecture) }}"
+    system_architecture: "{{ ansible_system | lower }}-{{ architecture_map[ansible_architecture] | default(ansible_architecture) }}"
   vars_files:
     - group_vars/all.yml
     - group_vars/default.yml
@@ -16,11 +16,11 @@
   tasks:
     - name: Set service_identifier
       ansible.builtin.set_fact:
-        service_identifier: "{{ node_service_identifier }}-{{ cluster }}-{{ promtail.service_identifier_suffix }}"
+        service_identifier: "{{ node_service_identifier }}-{{ prometheus.service_identifier_suffix }}-{{ cluster }}"
 
     - name: Include common handlers
       ansible.builtin.include_role:
         name: common
-    - name: Include promtail role
+    - name: Include prometheus role
       ansible.builtin.include_role:
-        name: promtail
+        name: prometheus

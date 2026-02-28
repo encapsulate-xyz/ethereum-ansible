@@ -1,0 +1,36 @@
+[Unit]
+Description=Prometheus Service
+
+[Service]
+User={{ service_identifier }}
+Group={{ service_identifier }}
+WorkingDirectory={{ prometheus_home_dir }}
+ExecStart={{ prometheus_bin_dir }}/{{ service_identifier }} \
+    --config.file {{ prometheus_config_file_path }} \
+    --storage.tsdb.path {{ prometheus_data_dir }} \
+    --storage.tsdb.retention.time=7d \
+    --web.listen-address="{{ prometheus_web_listen_address }}" 
+
+Restart=always
+RestartSec=4
+LimitNOFILE=65536
+MemoryMax=64G
+StandardOutput=append:{{ prometheus_log_file_path }}
+StandardError=inherit
+
+# --- Hardening & Security ---
+NoNewPrivileges=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+# --- File System Isolation ---
+ProtectHome=true
+PrivateTmp=true
+
+# --- System Protection ---
+ProtectHostname=true
+ProtectClock=true
+ProtectKernelModules=true
+
+[Install]
+WantedBy=multi-user.target

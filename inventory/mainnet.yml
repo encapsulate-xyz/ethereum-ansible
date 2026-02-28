@@ -74,6 +74,8 @@ all:
           cluster: zephyr
           cluster_name: "Zephyr Zorilla"
           cluster_peer: "cloudy-game"
+          discord_id: "1288506628852809728,1336898516668252260"
+          promtail_position_file_path: /opt/obol-zephyr-promtail/data/positions.yml
 
         zephyr.ejector.obol.mainnet.encapsulate.xyz:
           type: ejector

@@ -2,5 +2,8 @@
 nvm:
   version: 0.40.1
 
-promtail:
-  version: 3.4.5
+alloy:
+  version: v1.13.2
+
+prometheus:
+  version: 3.10.0

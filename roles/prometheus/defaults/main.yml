@@ -1,0 +1,17 @@
+---
+prometheus_home_dir: /opt/{{ service_identifier }}
+
+prometheus_bin_dir: "{{ prometheus_home_dir }}/bin"
+prometheus_config_dir: "{{ prometheus_home_dir }}/config"
+prometheus_data_dir: "{{ prometheus_home_dir }}/data"
+prometheus_log_dir: "{{ prometheus_home_dir }}/log"
+
+prometheus_directories:
+  - "{{ prometheus_home_dir }}"
+  - "{{ prometheus_bin_dir }}"
+  - "{{ prometheus_config_dir }}"
+  - "{{ prometheus_data_dir }}"
+  - "{{ prometheus_log_dir }}"
+
+prometheus_log_file_path: "{{ prometheus_log_dir }}/{{ service_identifier }}.log"
+prometheus_config_file_path: "{{ prometheus_config_dir }}/{{ prometheus_config_file_name }}"

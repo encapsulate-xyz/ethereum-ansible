@@ -62,6 +62,7 @@ ethereum:
     source_url: https://github.com/flashbots/mev-boost/releases/download
     ports:
       listen_port: 18550
+      metrics_port: 18551
 
 ssv:
   node:
@@ -94,10 +95,16 @@ obol:
     ports:
       metrics: 5064
 
-promtail:
-  service_identifier_suffix: promtail
-  source_url: https://github.com/grafana/loki/releases/download
+alloy:
+  service_identifier_suffix: alloy
+  source_url: https://github.com/grafana/alloy/releases/download
   file_extension: zip
   ports:
     http_listen_port: 9086
-    grpc_listen_port: 9087
+
+prometheus:
+  service_identifier_suffix: prometheus
+  source_url: https://github.com/prometheus/prometheus/releases/download
+  file_extension: tar.gz
+  ports:
+    web_listen_address: 9090

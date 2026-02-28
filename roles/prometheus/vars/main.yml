@@ -1,0 +1,4 @@
+---
+prometheus_default_binary_name: prometheus
+prometheus_config_file_name: config.yml
+prometheus_web_listen_address: "127.0.0.1:{{ prometheus.ports.web_listen_address }}"

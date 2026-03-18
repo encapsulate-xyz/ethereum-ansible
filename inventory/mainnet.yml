@@ -69,24 +69,23 @@ all:
     obol:
       hosts:
 
-        zephyr.charon.obol.mainnet.encapsulate.xyz:
+        ts.zephyr.charon.obol.mainnet.encapsulate.xyz:
           type: charon
           cluster: zephyr
           cluster_name: "Zephyr Zorilla"
           cluster_peer: "cloudy-game"
           discord_id: "1288506628852809728,1336898516668252260"
-          promtail_position_file_path: /opt/obol-zephyr-promtail/data/positions.yml
 
-        zephyr.ejector.obol.mainnet.encapsulate.xyz:
+        ts.zephyr.ejector.obol.mainnet.encapsulate.xyz:
           type: ejector
           cluster: zephyr
           obol_dv_exit_message_dir: /opt/obol-dv-exit-{{ cluster }}/data
 
-        zephyr.dvexit.obol.mainnet.encapsulate.xyz:
+        ts.zephyr.dvexit.obol.mainnet.encapsulate.xyz:
           type: dv_exit
           cluster: zephyr
           charon_run_time_dir: /opt/obol-charon-{{ cluster }}/key
 
-        zephyr.lodestar.obol.mainnet.encapsulate.xyz:
+        ts.zephyr.lodestar.obol.mainnet.encapsulate.xyz:
           type: lodestar
           cluster: zephyr

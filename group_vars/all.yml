@@ -107,4 +107,4 @@ prometheus:
   source_url: https://github.com/prometheus/prometheus/releases/download
   file_extension: tar.gz
   ports:
-    web_listen_address: 9090
+    web_listen_address: 9790

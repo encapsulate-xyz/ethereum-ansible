@@ -19,12 +19,12 @@ all:
           network: mainnet
           genesis_hash: "0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3"
 
-        prysm.consensus.ethereum.mainnet.encapsulate.xyz:
+        ts.prysm.consensus.ethereum.mainnet.encapsulate.xyz:
           type: cons
           network: mainnet
           client: prysm
 
-        geth.execution.ethereum.mainnet.encapsulate.xyz:
+        ts.geth.execution.ethereum.mainnet.encapsulate.xyz:
           type: exec
           network: mainnet
           client: geth
@@ -34,7 +34,7 @@ all:
           network: mainnet
           type: mev
 
-        prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
+        ts.prysm.mevboost.ethereum.mainnet.encapsulate.xyz:
           client: prysm
           network: mainnet
           type: mev

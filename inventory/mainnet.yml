@@ -42,21 +42,13 @@ all:
     ssv:
       hosts:
 
-        arid.node.ssv.mainnet.encapsulate.xyz:
+        ts.arid.node.ssv.mainnet.encapsulate.xyz:
           type: node
           cluster: arid
 
-        arid.dkg.ssv.mainnet.encapsulate.xyz:
+        ts.arid.dkg.ssv.mainnet.encapsulate.xyz:
           type: dkg
           cluster: arid
-
-        manta.node.ssv.mainnet.encapsulate.xyz:
-          type: node
-          cluster: manta
-
-        manta.dkg.ssv.mainnet.encapsulate.xyz:
-          type: dkg
-          cluster: manta
 
         ts.manta.node.ssv.mainnet.encapsulate.xyz:
           type: node

@@ -24,19 +24,19 @@ all:
           network: hoodi
           type: mev
         
-        lighthouse.consensus.ethereum.sepolia.encapsulate.xyz:
+        ts.lighthouse.consensus.ethereum.sepolia.encapsulate.xyz:
           type: cons
           client: lighthouse
           network: sepolia
           checkpoint_sync_url: "https://checkpoint-sync.sepolia.ethpandaops.io"
         
-        nethermind.execution.ethereum.sepolia.encapsulate.xyz:
+        ts.nethermind.execution.ethereum.sepolia.encapsulate.xyz:
           type: exec
           client: nethermind
           network: sepolia
           genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"
 
-        lighthouse.mevboost.ethereum.sepolia.encapsulate.xyz:
+        ts.lighthouse.mevboost.ethereum.sepolia.encapsulate.xyz:
           client: lighthouse
           network: sepolia
           type: mev

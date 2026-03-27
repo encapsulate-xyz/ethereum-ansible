@@ -29,3 +29,4 @@ lighthouse_ufw_rules:
     rule: allow
     from: "primev.charon.obol.testnet.encapsulate.xyz"
     comment: lighthouse_http_port
+    delete: true

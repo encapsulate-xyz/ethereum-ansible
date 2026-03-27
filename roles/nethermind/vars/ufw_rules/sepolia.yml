@@ -23,9 +23,11 @@ nethermind_ufw_rules:
     rule: allow
     from: "validator.aztec.testnet.encapsulate.xyz"
     comment: nethermind_json_rpc_port
+    delete: true
 
   - port: "{{ ethereum.nethermind.ports.json_rpc }}"
     proto: tcp
     rule: allow
     from: "bridge.sui.testnet.encapsulate.xyz"
     comment: nethermind_json_rpc_port
+    delete: true

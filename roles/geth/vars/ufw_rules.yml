@@ -23,27 +23,32 @@ geth_ufw_rules:
     rule: allow
     from: "manta.node.ssv.mainnet.encapsulate.xyz"
     comment: geth_websocket_port
+    delete: true
 
   - port: "{{ ethereum.geth.ports.websocket }}"
     proto: tcp
     rule: allow
     from: "arid.node.ssv.mainnet.encapsulate.xyz"
     comment: geth_websocket_port
+    delete: true
 
   - port: "{{ ethereum.geth.ports.http }}"
     proto: tcp
     rule: allow
     from: "zephyr.charon.obol.mainnet.encapsulate.xyz"
     comment: geth_http_port
+    delete: true
 
   - port: "{{ ethereum.geth.ports.http }}"
     proto: tcp
     rule: allow
     from: "ts.orchestrator.gravity.mainnet.encapsulate.xyz"
     comment: geth_http_port
+    delete: true
 
   - port: "{{ ethereum.geth.ports.http }}"
     proto: tcp
     rule: allow
     from: "139.84.156.198"
     comment: geth_http_port
+    delete: true

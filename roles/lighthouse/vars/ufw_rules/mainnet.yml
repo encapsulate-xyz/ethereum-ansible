@@ -51,6 +51,3 @@ lighthouse_ufw_rules:
     from: "139.84.156.198"
     comment: lighthouse_http_port
     delete: true
-
-  - port: "{{ ethereum.lighthouse.ports.http }}"
-    

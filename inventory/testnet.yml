@@ -19,11 +19,6 @@ all:
           network: hoodi
           genesis_hash: "0xbbe312868b376a3001692a646dd2d7d1e4406380dfd86b98aa8a34d1557c971b"
 
-        lighthouse.mevboost.ethereum.hoodi.encapsulate.xyz:
-          client: lighthouse
-          network: hoodi
-          type: mev
-        
         ts.lighthouse.consensus.ethereum.sepolia.encapsulate.xyz:
           type: cons
           client: lighthouse
@@ -36,18 +31,14 @@ all:
           network: sepolia
           genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"
 
-        ts.lighthouse.mevboost.ethereum.sepolia.encapsulate.xyz:
+        100.72.10.15:
+          type: cons
           client: lighthouse
           network: sepolia
-          type: mev
-
-    obol:
-      hosts:
-
-        primev.charon.obol.testnet.encapsulate.xyz:
-          type: charon
-          cluster: primev
-
-        primev.lodestar.obol.testnet.encapsulate.xyz:
-          type: lodestar
-          cluster: primev
+          checkpoint_sync_url: "https://checkpoint-sync.sepolia.ethpandaops.io"
+        
+        100.72.10.15:
+          type: exec
+          client: nethermind
+          network: sepolia
+          genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"

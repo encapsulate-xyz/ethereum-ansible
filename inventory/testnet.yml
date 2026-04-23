@@ -30,17 +30,3 @@ all:
           client: nethermind
           network: sepolia
           genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"
-
-        sepolia_lighthouse:
-          ansible_host: 100.91.208.54
-          type: cons
-          client: lighthouse
-          network: sepolia
-          checkpoint_sync_url: "https://checkpoint-sync.sepolia.ethpandaops.io"
-        
-        sepolia_nethermind:
-          ansible_host: 100.91.208.54
-          type: exec
-          client: nethermind
-          network: sepolia
-          genesis_hash: "0x25a5cc106eea7138acab33231d7160d69cb777ee0c2c553fcddf5138993e6dd9"

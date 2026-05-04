@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# --- Configuration Variables ---
+PORT={{ obol.lodestar.ports.metrics }}
+LOG_FILE="/opt/obol-lodestar-{{ cluster }}/log/obol-lodestar-{{ cluster }}.log" 
+ERROR_STRING="Failed to run command: fork/exec /tmp/caxa"
+TARGET_DIR="/tmp/caxa"
+
+# Timestamped logger
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+
+log "Checking status of service."
+
+# --- Check if the port is in use ---
+if ss -tuln | grep -qE ":${PORT}\b"; then
+    log "Port ${PORT} is currently in use. The service appears to be running."
+else
+    log "Port ${PORT} is NOT in use."
+    log "Investigating logs for errors."
+    
+    # Verify the log file actually exists before trying to read it
+    if [[ ! -f "$LOG_FILE" ]]; then
+        log "Log file does not exist. Please update the log file path."
+        exit 1
+    fi
+
+    log "Investigating logs for caxa errors."
+
+    # --- Check the logs for the caxa error ---
+    if grep -q "$ERROR_STRING" "$LOG_FILE"; then
+        log "Caxa folder corruption detected in the logs."
+        grep "$ERROR_STRING" "$LOG_FILE" | tail -n 3
+        
+        log "Executing automated recovery."
+        
+        # --- AUTOMATION ACTIONS ---       
+        log "Deleting /tmp/caxa directory."
+        sudo systemctl stop "$SERVICE_IDENTIFIER"
+        sudo rm -rf "$TARGET_DIR"
+        
+        log "Restarting service."
+        sudo systemctl start "$SERVICE_IDENTIFIER"
+        
+        log "Recovery complete."
+
+    else
+        log "The service is down, but it does not appear to be caused by the /tmp/caxa issue."
+    fi
+fi

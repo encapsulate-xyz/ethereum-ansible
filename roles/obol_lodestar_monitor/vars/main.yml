@@ -1,0 +1,2 @@
+---
+obol_lodestar_monitor_script_file_name: "{{ service_identifier }}.sh"

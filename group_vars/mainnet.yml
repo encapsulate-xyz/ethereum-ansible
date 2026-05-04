@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 ethereum:
   nethermind:
-    version: 1.36.2-f5507dec
+    version: 1.37.1-706ad499
   geth:
     version: 1.17.2-be4dc0c4
   lighthouse:

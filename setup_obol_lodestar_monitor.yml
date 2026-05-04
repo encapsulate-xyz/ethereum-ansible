@@ -1,0 +1,24 @@
+---
+- name: Set up obol lodestar monitor
+  hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    project: "{{ group_names[0] }}"
+    service_group: "{{ project }}-{{ cluster }}"
+  vars_files:
+    - group_vars/all.yml
+    - group_vars/{{ env }}.yml
+
+  tasks:
+    - name: Set service_identifier
+      ansible.builtin.set_fact:
+        service_identifier: "{{ project }}-{{ type }}-{{ cluster }}-monitor"
+
+    - name: Include common handlers
+      ansible.builtin.include_role:
+        name: common
+
+    - name: Include obol_lodestar_monitor role
+      ansible.builtin.include_role:
+        name: obol_lodestar_monitor

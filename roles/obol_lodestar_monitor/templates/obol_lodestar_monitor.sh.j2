@@ -2,7 +2,8 @@
 
 # --- Configuration Variables ---
 PORT={{ obol.lodestar.ports.metrics }}
-LOG_FILE="/opt/obol-lodestar-{{ cluster }}/log/obol-lodestar-{{ cluster }}.log" 
+SERVICE_IDENTIFIER=obol-lodestar-{{ cluster }}
+LOG_FILE="/opt/obol-lodestar-{{ cluster }}/log/obol-lodestar-{{ cluster }}.log"
 ERROR_STRING="Failed to run command: fork/exec /tmp/caxa"
 TARGET_DIR="/tmp/caxa"
 

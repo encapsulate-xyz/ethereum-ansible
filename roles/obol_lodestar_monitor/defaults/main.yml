@@ -1,0 +1,14 @@
+---
+obol_lodestar_monitor_home_dir: /opt/{{ service_identifier }}
+
+obol_lodestar_monitor_bin_dir: "{{ obol_lodestar_monitor_home_dir }}/bin"
+obol_lodestar_monitor_log_dir: "{{ obol_lodestar_monitor_home_dir }}/log"
+
+obol_lodestar_monitor_directories:
+  - "{{ obol_lodestar_monitor_home_dir }}"
+  - "{{ obol_lodestar_monitor_bin_dir }}"
+  - "{{ obol_lodestar_monitor_log_dir }}"
+
+obol_lodestar_monitor_log_file_path: "{{ obol_lodestar_monitor_log_dir }}/{{ service_identifier }}.log"
+
+obol_lodestar_monitor_script_file_path: "{{ obol_lodestar_monitor_bin_dir }}/{{ obol_lodestar_monitor_script_file_name }}"

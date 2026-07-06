@@ -1,0 +1,118 @@
+---
+- name: Resolve role folder name
+  ansible.builtin.set_fact:
+    resolved_role_folder: >-
+      {{ role_folder_name | default(
+           client if (type in ['cons', 'consensus', 'exec', 'execution'] and client is defined)
+           else ('ssv_' ~ type) if type in ['node', 'dkg']
+           else ('obol_' ~ type) if type in ['charon', 'ejector', 'dv_exit', 'lodestar']
+           else 'mev_boost' if type in ['mev', 'mevboost']
+           else type
+         ) }}
+
+- name: Include UFW vars and apply ufw rules
+  block:
+    - name: Set UFW vars file candidates
+      ansible.builtin.set_fact:
+        ufw_vars_candidates: >-
+          {{ [
+               playbook_dir ~ '/roles/' ~ resolved_role_folder ~ '/vars/ufw_rules/' ~ network ~ '.yml',
+               playbook_dir ~ '/roles/' ~ resolved_role_folder ~ '/vars/ufw_rules.yml',
+               playbook_dir ~ '/roles/node/vars/' ~ env ~ '/' ~ project ~ '.yml'
+             ] if network is defined and network else [
+               playbook_dir ~ '/roles/' ~ resolved_role_folder ~ '/vars/ufw_rules.yml',
+               playbook_dir ~ '/roles/node/vars/' ~ env ~ '/' ~ project ~ '.yml'
+             ] }}
+
+    - name: Find first existing UFW vars file
+      ansible.builtin.set_fact:
+        ufw_vars_file: "{{ lookup('first_found', dict(files=ufw_vars_candidates, skip=true)) }}"
+
+    - name: Include UFW vars file
+      ansible.builtin.include_vars:
+        file: "{{ ufw_vars_file }}"
+      when: ufw_vars_file is defined and ufw_vars_file != ''
+
+    - name: Get UFW rules variable
+      ansible.builtin.set_fact:
+        ufw_rules_var: >-
+          {{ lookup('vars', resolved_role_folder ~ '_ufw_rules', default=none)
+             if lookup('vars', resolved_role_folder ~ '_ufw_rules', default=none) is not none
+             else lookup('vars', vars.keys() | select('search', '_ufw_rules$') | first, default=none) }}
+      when: ufw_vars_file is defined and ufw_vars_file != ''
+
+    - name: Extract UFW rules
+      ansible.builtin.set_fact:
+        ufw_rules_list: >-
+          {{ ufw_rules_var[type] if (ufw_rules_var is mapping and type in ufw_rules_var)
+            else ufw_rules_var if ufw_rules_var is sequence
+            else [] }}
+      when:
+        - ufw_vars_file is defined and ufw_vars_file != ''
+        - ufw_rules_var is not none
+
+    - name: Apply UFW rules
+      ansible.builtin.include_tasks: tasks/apply_ufw_rules.yml
+      loop: "{{ ufw_rules_list | default([]) }}"
+      vars:
+        sunset_delete_rule: true
+      when:
+        - ufw_vars_file is defined and ufw_vars_file != ''
+        - ufw_rules_list is defined
+
+    - name: No UFW vars file found
+      ansible.builtin.debug:
+        msg: "No UFW vars file found, skipping UFW rules application"
+      when: ufw_vars_file is not defined or ufw_vars_file == ''
+
+- name: Stop and disable systemd service and timer
+  ansible.builtin.service:
+    name: "{{ service_identifier }}.{{ item }}"
+    state: stopped
+    enabled: false
+  loop:
+    - "service"
+    - "timer"
+  ignore_errors: true
+
+- name: Delete home directory
+  ansible.builtin.file:
+    path: "/opt/{{ service_identifier }}"
+    state: absent
+
+- name: Delete systemd service and timer files
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ service_identifier }}.{{ item }}"
+    state: absent
+  loop:
+    - "service"
+    - "timer"
+  ignore_errors: true
+
+- name: Set service group fact if not defined
+  ansible.builtin.set_fact:
+    service_group: "{{ service_group | default(project ~ ('-' ~ cluster if cluster is defined else '')) }}"
+
+- name: Delete user
+  ansible.builtin.user:
+    name: "{{ service_identifier }}"
+    state: absent
+    remove: true
+
+- name: Delete group
+  ansible.builtin.group:
+    name: "{{ service_identifier }}"
+    state: absent
+  ignore_errors: true
+
+- name: Delete service group
+  ansible.builtin.group:
+    name: "{{ service_group }}"
+    state: absent
+  when: service_group is defined and service_group != ''
+
+- name: Delete project group
+  ansible.builtin.group:
+    name: "{{ project }}"
+    state: absent
+  ignore_errors: true

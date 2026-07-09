@@ -31,7 +31,7 @@
     - name: Include UFW vars file
       ansible.builtin.include_vars:
         file: "{{ ufw_vars_file }}"
-      when: ufw_vars_file is defined and ufw_vars_file != ''
+      when: ufw_vars_file is defined and ufw_vars_file is string and ufw_vars_file != ''
 
     - name: Get UFW rules variable
       ansible.builtin.set_fact:
@@ -39,7 +39,7 @@
           {{ lookup('vars', resolved_role_folder ~ '_ufw_rules', default=none)
              if lookup('vars', resolved_role_folder ~ '_ufw_rules', default=none) is not none
              else lookup('vars', vars.keys() | select('search', '_ufw_rules$') | first, default=none) }}
-      when: ufw_vars_file is defined and ufw_vars_file != ''
+      when: ufw_vars_file is defined and ufw_vars_file is string and ufw_vars_file != ''
 
     - name: Extract UFW rules
       ansible.builtin.set_fact:
@@ -48,7 +48,9 @@
             else ufw_rules_var if ufw_rules_var is sequence
             else [] }}
       when:
-        - ufw_vars_file is defined and ufw_vars_file != ''
+        - ufw_vars_file is defined
+        - ufw_vars_file is string
+        - ufw_vars_file != ''
         - ufw_rules_var is not none
 
     - name: Apply UFW rules
@@ -57,13 +59,15 @@
       vars:
         sunset_delete_rule: true
       when:
-        - ufw_vars_file is defined and ufw_vars_file != ''
+        - ufw_vars_file is defined
+        - ufw_vars_file is string
+        - ufw_vars_file != ''
         - ufw_rules_list is defined
 
     - name: No UFW vars file found
       ansible.builtin.debug:
         msg: "No UFW vars file found, skipping UFW rules application"
-      when: ufw_vars_file is not defined or ufw_vars_file == ''
+      when: ufw_vars_file is not defined or ufw_vars_file is not string or ufw_vars_file == ''
 
 - name: Stop and disable systemd service and timer
   ansible.builtin.service:

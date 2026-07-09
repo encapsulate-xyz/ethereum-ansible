@@ -13,23 +13,7 @@
   pre_tasks:
     - name: Include environment setup tasks
       ansible.builtin.include_tasks: tasks/setup_environment.yml
-      when: not (skip_env | default(false) | bool)
     
-    - name: Set service variables
-      when: skip_env | default(false) | bool
-      block:
-        - name: Set project
-          ansible.builtin.set_fact:
-            project: "{{ group_names[0] }}"
-
-        - name: Set node_service_identifier
-          ansible.builtin.set_fact:
-            node_service_identifier: "{{ project }}{{ '' if type in default_node_types else '-' + type }}"
-
-        - name: Set service_identifier
-          ansible.builtin.set_fact:
-            service_identifier: "{{ node_service_identifier }}-metrics"
-
   tasks:
     - name: Include common handlers
       ansible.builtin.include_role:

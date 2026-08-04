@@ -18,7 +18,7 @@ ssv:
     go:
       version: 1.26.4
   dkg:
-    version: v3.0.3
+    version: v3.1.1
     go:
       version: 1.21.0
 

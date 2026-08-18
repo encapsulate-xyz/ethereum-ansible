@@ -6,7 +6,7 @@ ethereum:
   geth:
     version: 1.17.5-9621c6ad
   lighthouse:
-    version: v8.2.1
+    version: v8.2.2
   prysm:
     version: v7.1.8
   mevboost:

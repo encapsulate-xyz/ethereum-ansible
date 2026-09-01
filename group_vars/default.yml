@@ -3,7 +3,7 @@ nvm:
   version: 0.40.1
 
 alloy:
-  version: v1.13.2
+  version: v1.19.0
 
 prometheus:
-  version: 3.10.0
+  version: 3.14.0

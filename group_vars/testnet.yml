@@ -2,7 +2,7 @@
 # maintains versions and can overwrite all.yml
 ethereum:
   nethermind:
-    version: 1.39.3-28cbe2a0
+    version: 2.0.0-bec830cd
     ports:
       engine: 8515
       network_discovery: 30330

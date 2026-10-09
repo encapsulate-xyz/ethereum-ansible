@@ -2,13 +2,13 @@
 # maintains versions and can overwrite all.yml
 ethereum:
   nethermind:
-    version: 2.0.0-bec830cd
+    version: 2.1.0-b3e7e84c
   geth:
-    version: 1.17.7-3d858f85
+    version: 1.17.8-a5790770
   lighthouse:
-    version: v8.2.2
+    version: v8.2.3
   prysm:
-    version: v7.2.0
+    version: v7.2.1
   mevboost:
     version: 1.12
 

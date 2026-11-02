@@ -24,3 +24,14 @@
     - name: Include prometheus role
       ansible.builtin.include_role:
         name: prometheus
+        public: true
+
+  post_tasks:
+    - name: Verify prometheus
+      block:
+        # No version check: this playbook doesn't set the project the check falls back on
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ prometheus_log_file_path }}"
+            health_url: "http://{{ prometheus_web_listen_address }}/-/healthy"

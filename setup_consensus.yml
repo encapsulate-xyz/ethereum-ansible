@@ -28,9 +28,36 @@
         - name: Include lighthouse role
           ansible.builtin.include_role:
             name: lighthouse
+            public: true
           when: client == "lighthouse"
 
         - name: Include prysm role
           ansible.builtin.include_role:
             name: prysm
+            public: true
           when: client == "prysm"
+
+  post_tasks:
+    - name: Verify consensus client
+      when: type in allowed_node_types
+      block:
+        # node/health answers 206 while the node is syncing
+        - name: Include verify service task for lighthouse
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          when: client == "lighthouse"
+          vars:
+            log_file_path: "{{ lighthouse_log_file_path }}"
+            version_command: "{{ lighthouse_bin_dir }}/{{ service_identifier }} --version"
+            expected_version: "{{ ethereum.lighthouse.version }}"
+            health_url: "http://localhost:{{ ethereum.lighthouse.ports.http }}/eth/v1/node/health"
+            health_status_codes: [200, 206]
+
+        - name: Include verify service task for prysm
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          when: client == "prysm"
+          vars:
+            log_file_path: "{{ prysm_log_file_path }}"
+            version_command: "{{ prysm_bin_dir }}/{{ service_identifier }} --version"
+            expected_version: "{{ ethereum.prysm.version }}"
+            health_url: "http://localhost:{{ ethereum.prysm.ports.http }}/eth/v1/node/health"
+            health_status_codes: [200, 206]

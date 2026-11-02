@@ -31,3 +31,17 @@
         - name: Include obol_lodestar role
           ansible.builtin.include_role:
             name: obol_lodestar
+            public: true
+
+  post_tasks:
+    - name: Verify obol lodestar
+      when:
+        - type in allowed_node_types
+      block:
+        # The validator client serves only metrics, which start before it waits for the beacon node
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ obol_lodestar_log_file_path }}"
+            version_command: "{{ obol_lodestar_bin_dir }}/{{ service_identifier }} --version"
+            health_url: "http://localhost:{{ obol.lodestar.ports.metrics }}/metrics"

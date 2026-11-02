@@ -28,9 +28,38 @@
         - name: Include nethermind role
           ansible.builtin.include_role:
             name: nethermind
+            public: true
           when: client == "nethermind"
 
         - name: Include geth role
           ansible.builtin.include_role:
             name: geth
+            public: true
           when: client == "geth"
+
+  post_tasks:
+    - name: Verify execution client
+      when: type in allowed_node_types
+      block:
+        # The nethermind binary unpacks itself under $HOME, so run it as the service user to reuse its copy
+        - name: Include verify service task for nethermind
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          when: client == "nethermind"
+          vars:
+            log_file_path: "{{ nethermind_log_file_path }}"
+            version_command: runuser -u {{ service_identifier }} -- {{ nethermind_bin_dir }}/{{ service_identifier }} --version
+            expected_version: "{{ ethereum.nethermind.version | regex_replace('-(?=[0-9a-f]{8}$)', '+') }}"
+            health_url: "http://localhost:{{ ethereum.nethermind.ports.json_rpc }}"
+            health_method: POST
+            health_body: {"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}
+
+        - name: Include verify service task for geth
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          when: client == "geth"
+          vars:
+            log_file_path: "{{ geth_log_file_path }}"
+            version_command: "{{ geth_bin_dir }}/{{ service_identifier }} --version"
+            expected_version: "{{ ethereum.geth.version | replace('-', '-stable-') }}"
+            health_url: "http://localhost:{{ ethereum.geth.ports.http }}"
+            health_method: POST
+            health_body: {"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}

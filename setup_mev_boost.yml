@@ -30,3 +30,18 @@
         - name: Include mev_boost role
           ansible.builtin.include_role:
             name: mev_boost
+            public: true
+
+  post_tasks:
+    - name: Verify mev-boost
+      when:
+        - type in allowed_node_types
+      block:
+        # With -relay-check the status answers 200 only while at least one relay is reachable
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ mev_boost_log_file_path }}"
+            version_command: "{{ mev_boost_bin_dir }}/{{ service_identifier }} --version"
+            expected_version: "{{ ethereum.mevboost.version }}"
+            health_url: "http://localhost:{{ ethereum.mevboost.ports.listen_port }}/eth/v1/builder/status"

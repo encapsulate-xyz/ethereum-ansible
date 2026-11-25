@@ -31,3 +31,17 @@
         - name: Include obol_ejector role
           ansible.builtin.include_role:
             name: obol_ejector
+            public: true
+
+  post_tasks:
+    - name: Verify obol ejector
+      when:
+        - type in allowed_node_types
+      block:
+        # The ejector reports the version in its package.json
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ obol_ejector_log_file_path }}"
+            version_command: grep -m 1 '"version"' {{ obol_ejector_bin_dir }}/package.json
+            health_url: "http://localhost:{{ obol.ejector.ports.http }}/health"

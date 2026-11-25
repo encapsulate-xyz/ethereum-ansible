@@ -30,3 +30,16 @@
         - name: Include obol_charon role
           ansible.builtin.include_role:
             name: obol_charon
+            public: true
+
+  post_tasks:
+    - name: Verify obol charon
+      when:
+        - type in allowed_node_types
+      block:
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ obol_charon_log_file_path }}"
+            version_command: "{{ obol_charon_bin_dir }}/{{ service_identifier }} version"
+            health_url: "http://localhost:{{ obol.charon.ports.metrics }}/livez"

@@ -30,3 +30,15 @@
         - name: Include obol_dv_exit role
           ansible.builtin.include_role:
             name: obol_dv_exit
+            public: true
+
+  post_tasks:
+    - name: Verify obol dv exit
+      when:
+        - type in allowed_node_types
+      block:
+        # lido-dv-exit serves no HTTP endpoint, and its version command prints only the git commit
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ obol_dv_exit_log_file_path }}"

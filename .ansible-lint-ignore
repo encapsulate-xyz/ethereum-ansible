@@ -1,0 +1,12 @@
+# This file contains ignores rule violations for ansible-lint
+decommission_service.yml yaml[trailing-spaces]
+inventory/testnet.yml yaml[trailing-spaces]
+roles/decommission_service/tasks/main.yml ignore-errors
+roles/decommission_service/tasks/main.yml var-naming[no-role-prefix]
+roles/mev_boost/tasks/main.yml var-naming[no-role-prefix]
+roles/obol_lodestar/tasks/extract_binary.yml var-naming[no-role-prefix]
+roles/obol_lodestar/tasks/import_keys.yml command-instead-of-shell
+roles/obol_lodestar/tasks/import_keys.yml yaml[trailing-spaces]
+setup_consensus.yml yaml[commas]
+setup_execution.yml yaml[commas]
+setup_mev_boost.yml yaml[commas]

@@ -30,3 +30,16 @@
         - name: Include ssv_node role
           ansible.builtin.include_role:
             name: ssv_node
+            public: true
+
+  post_tasks:
+    - name: Verify ssv node
+      when:
+        - type in allowed_node_types
+      block:
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ ssv_node_log_file_path }}"
+            version_command: "{{ ssv_node_bin_dir }}/{{ service_identifier }} version"
+            health_url: "http://localhost:{{ ssv.node.ports.metrics }}/health"

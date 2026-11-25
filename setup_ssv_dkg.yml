@@ -30,3 +30,16 @@
         - name: Include ssv_dkg role
           ansible.builtin.include_role:
             name: ssv_dkg
+            public: true
+
+  post_tasks:
+    - name: Verify ssv dkg
+      when:
+        - type in allowed_node_types
+      block:
+        # The health check is served over TLS with a self-signed cert, which the uri check would reject
+        - name: Include verify service task
+          ansible.builtin.include_tasks: tasks/verify_service.yml
+          vars:
+            log_file_path: "{{ ssv_dkg_log_file_path }}"
+            version_command: "{{ ssv_dkg_bin_dir }}/{{ service_identifier }} version"
